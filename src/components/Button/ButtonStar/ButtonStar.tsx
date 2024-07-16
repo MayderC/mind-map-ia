@@ -1,15 +1,11 @@
+'use client';
+import { ButtonStarProps } from "@/components/common/types";
 import {Button } from "@excalidraw/excalidraw";
 import Image from "next/image";
 
-type ButtonProps = {
-  onSelect: () => void;
-  text?: string;
-  isMobile ?: boolean;
-  appState ?: any;
-};
 
 
-export const ButtonStar = ({onSelect, text}: ButtonProps) => (
+export const ButtonStar = ({onSelect, text}: ButtonStarProps) => (
     <Button className="bg-slate-100" style={
       {
         width: "max-content", 

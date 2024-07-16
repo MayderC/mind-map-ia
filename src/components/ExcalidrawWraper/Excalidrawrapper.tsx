@@ -1,35 +1,16 @@
-'use client'
-import { ButtonStar } from "@/components/ButtonStar/ButtonStar";
-import { MainMenu, WelcomeScreen } from "@excalidraw/excalidraw";
-import React, { Suspense, lazy } from 'react';
+"use client";
+import { Excalidraw, MainMenu, WelcomeScreen } from "@excalidraw/excalidraw";
 
+import { ButtonStar } from "../Button/ButtonStar/ButtonStar";
 
-
-
-const Excalidraw = lazy(
-  () => import('@excalidraw/excalidraw').then((module) => ({
-    default: module.Excalidraw,
-  }))
-);  
-
-export default function App(){
-
-
-
-  const fallbackLoader = () => (
-    <div className="h-screen w-full flex justify-center items-center">
-      <p className="text-[#e3e3e8]">Loading App...</p>
-    </div>
-  )
+const ExcalidrawWrapper: React.FC = () => {
 
   const handleSelect = () => {
-    console.log("Hola")
-  }
+    console.log('Hola');
+  };
 
   return (
-    <main className="min-h-screen h-screen w-full">
-      <Suspense fallback={fallbackLoader()}>
-        <Excalidraw
+    <Excalidraw
           theme="dark"
           renderTopRightUI={(isMobile, appState) => (
             <ButtonStar onSelect={handleSelect} text="IA tool" isMobile={isMobile} appState={appState} />
@@ -66,7 +47,6 @@ export default function App(){
         </WelcomeScreen>
 
         </Excalidraw>
-      </Suspense>
-    </main>
   );
-}
+};
+export default ExcalidrawWrapper;
