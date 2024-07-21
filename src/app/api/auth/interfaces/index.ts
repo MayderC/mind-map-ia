@@ -1,3 +1,4 @@
+import {ISummary} from "@/models/Summary";
 
 export interface UserRequest {
     email: string;
@@ -11,6 +12,10 @@ export interface UserResponse {
     email: string;
     createdAt: Date;
     role: string[];
+}
+
+export interface UserResponseWithSummaries extends UserResponse {
+    summaries: ISummary[];
 }
 
 export interface UserLoginResponse {

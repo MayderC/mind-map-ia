@@ -8,7 +8,7 @@ export interface ISummary {
     title: string;
     description: string;
     content: string;
-    maps: IMap[];
+    maps?: IMap[];
 }
 
 const summarySchema = new Schema<ISummary>({

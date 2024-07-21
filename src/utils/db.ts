@@ -24,7 +24,10 @@ if (!cached) {
 }
 
 async function conexion():Promise<typeof _mongoose>{
-    if (cached.conn) return cached.conn;
+    if (cached.conn) {
+        console.log("Using existing connection");
+        return cached.conn;
+    }
     
 
     if (!cached.promise) {

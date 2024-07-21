@@ -1,0 +1,73 @@
+GET http://localhost:3000/api/summary/669c35b00b6562f11d8ca63a
+Accept: application/json
+###
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "test633@email.com",
+  "password": "password",
+  "name": "test"
+}
+###
+GET http://localhost:3000/api/users/669b142721ec997e621b447e/summaries
+###
+GET http://localhost:3000/api/users/669b142721ec997e621b447e/summaries/sumariD
+###
+POST http://localhost:3000/api/users/669b142721ec997e621b447e/summaries
+Content-Type: application/json
+
+{
+  "summary":{
+    "title": "II World War",
+    "description": "The Second World War was the deadliest conflict in human history. It lasted from 1939 to 1945 and involved 30 countries from every part of the globe. World War II killed around 70 million people or 4% of the world's population. It was the most destructive war in history and caused the fall of four great empires: the British, French, German, and Japanese empires.",
+    "content": "The war began on September 1, 1939, when Germany invaded Poland. Britain and France declared war on Germany two days later. The war in Europe ended on May 8, 1945, when Germany surrendered. The war in the Pacific ended on August 15, 1945, when Japan surrendered. The war ended with the unconditional surrender of the Axis powers. The war was fought on land, at sea, and in the air. It was fought in Europe, Asia, Africa, and the Pacific. The war was fought with tanks, ships, submarines, and airplanes. It was fought with rifles, machine guns, and artillery. It was fought with bombs, torpedoes, and rockets. It was fought with poison gas, flamethrowers, and nuclear weapons. The war was fought by soldiers, sailors, and airmen"
+  }  
+}
+
+HTTP/1.1 200  - OK
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+date: Sun, 21 Jul 2024 00:30:23 GMT
+connection: close
+transfer-encoding: chunked
+###
+DELETE http://localhost:3000/api/users/669b142721ec997e621b447e/summaries/669c22d90b6562f11d8ca62c
+###
+GET http://localhost:3000/api/summary/669b184721ec997e621b448c
+###
+PUT http://localhost:3000/api/summary/669b184721ec997e621b448c
+Content-Type: application/json
+
+{
+  "title": "II World War UPDATED",
+  "description": "The Second World War was the deadliest conflict in human history. It lasted from 1939 to 1945 and involved 30 countries from every part of the globe. World War II killed around 70 million people or 4% of the world's population. It was the most destructive war in history and caused the fall of four great empires: the British, French, German, and Japanese empires.",
+  "content": "The war began on September 1, 1939, when Germany invaded Poland. Britain and France declared war on Germany two days later. The war in Europe ended on May 8, 1945, when Germany surrendered. The war in the Pacific ended on August 15, 1945, when Japan surrendered. The war ended with the unconditional surrender of the Axis powers. The war was fought on land, at sea, and in the air. It was fought in Europe, Asia, Africa, and the Pacific. The war was fought with tanks, ships, submarines, and airplanes. It was fought with rifles, machine guns, and artillery. It was fought with bombs, torpedoes, and rockets. It was fought with poison gas, flamethrowers, and nuclear weapons. The war was fought by soldiers, sailors, and airmen",
+  "maps": [],
+  "__v": 0
+}
+###
+GET http://localhost:3000/api/summary/669c35b10b6562f11d8ca63f/maps
+
+HTTP/1.1 200  - OK
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+date: Sun, 21 Jul 2024 00:26:10 GMT
+connection: close
+transfer-encoding: chunked
+###
+POST http://localhost:3000/api/summary/669c35b10b6562f11d8ca63f/maps
+Content-Type: application/json
+
+{
+  "map": {
+    "title": "II World War",
+    "description": "The Second French, German, and Japanese empires.",
+    "type": "mindmap",
+    "mermaidSyntax": "graph TD G --> H[Axis powers surrendered",
+    "gojsStructure": {
+      "class": "GraphLinksModel",
+    }
+  }
+}

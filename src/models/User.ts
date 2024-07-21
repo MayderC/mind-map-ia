@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 import {ISummary} from './Summary';
 import {ROLES} from "@/utils/constants";
 import mongoose from 'mongoose';
-interface IUser {
+export interface IUser {
     _id?: string;
     name: string;
     email: string;
