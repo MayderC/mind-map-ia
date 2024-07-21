@@ -1,10 +1,10 @@
 import {NextResponse} from "next/server";
-import {getMapsBySummaryId, saveMap, saveMapToSummary} from "@/app/api/summary/services";
+import {getMapsBySummaryId, saveMap, saveMapToSummary} from "@/app/api/summaries/services";
 
 
 export async function GET(req: Request, context: any) {
     try {
-        const summaryId = context.params['id']
+        const summaryId = context.params['summaryId']
         const summary = await getMapsBySummaryId(summaryId)
         return NextResponse.json({maps: summary.maps})
     }catch (e) {
@@ -15,7 +15,7 @@ export async function GET(req: Request, context: any) {
 
 export async function POST(req: Request, context: any) {
     
-    const summaryId = context.params['id']
+    const summaryId = context.params['summaryId']
     const {map} = await req.json()
     
     if (!map) return NextResponse.json({message: 'Map is required'}, {status: 400})

@@ -1,4 +1,5 @@
 import {Summary, Map} from '@/models';
+import { IMap } from '@/models/Map';
 
 export const getSummaryById = async (summaryId: string) => {
     try {
@@ -54,5 +55,15 @@ export const saveMapToSummary = async (summaryId: string, mapId: any) => {
     }catch (e) {
         console.log(e)
         throw new Error('Error saving map to summary');
+    }
+}
+
+
+export const updateMap = async(mapId: string, map: IMap) => {
+    try {
+        return await Map.findByIdAndUpdate(mapId, map, {new: true});
+    }catch (e) {
+        console.log(e)
+        throw new Error('Error updating map');
     }
 }

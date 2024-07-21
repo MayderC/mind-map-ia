@@ -25,13 +25,6 @@ Content-Type: application/json
     "content": "The war began on September 1, 1939, when Germany invaded Poland. Britain and France declared war on Germany two days later. The war in Europe ended on May 8, 1945, when Germany surrendered. The war in the Pacific ended on August 15, 1945, when Japan surrendered. The war ended with the unconditional surrender of the Axis powers. The war was fought on land, at sea, and in the air. It was fought in Europe, Asia, Africa, and the Pacific. The war was fought with tanks, ships, submarines, and airplanes. It was fought with rifles, machine guns, and artillery. It was fought with bombs, torpedoes, and rockets. It was fought with poison gas, flamethrowers, and nuclear weapons. The war was fought by soldiers, sailors, and airmen"
   }  
 }
-
-HTTP/1.1 200  - OK
-vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
-content-type: application/json
-date: Sun, 21 Jul 2024 00:30:23 GMT
-connection: close
-transfer-encoding: chunked
 ###
 DELETE http://localhost:3000/api/users/669b142721ec997e621b447e/summaries/669c22d90b6562f11d8ca62c
 ###
@@ -53,7 +46,7 @@ GET http://localhost:3000/api/summary/669c35b10b6562f11d8ca63f/maps
 HTTP/1.1 200  - OK
 vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
 content-type: application/json
-date: Sun, 21 Jul 2024 00:26:10 GMT
+date: Sun, 21 Jul 2024 01:50:35 GMT
 connection: close
 transfer-encoding: chunked
 ###
@@ -71,3 +64,14 @@ Content-Type: application/json
     }
   }
 }
+###
+PUT http://localhost:3000/api/summary/669c35b10b6562f11d8ca63f/maps/669c35b10b6562f11d8ca63e
+###
+GET http://localhost:3000/api/maps/669c56eb0ead31f861a7962f
+
+HTTP/1.1 200  - OK
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+date: Sun, 21 Jul 2024 01:50:53 GMT
+connection: close
+transfer-encoding: chunked

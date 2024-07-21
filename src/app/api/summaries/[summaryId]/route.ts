@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server";
-import {deleteSummaryById, getSummaryById, updateSummaryById} from "@/app/api/summary/services";
+import {getSummaryById, updateSummaryById} from "@/app/api/summaries/services";
 
 export const GET = async (req: Request, context: any) => {
     try {
