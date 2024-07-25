@@ -11,12 +11,22 @@
   "dependencies": {
     "@ai-sdk/openai": "^0.0.36",
     "@excalidraw/excalidraw": "^0.17.6",
+    "@nextui-org/react": "2.0.22",
     "ai": "^3.2.20",
+    "apexcharts": "^3.35.5",
+    "autoprefixer": "^10.4.19",
     "bcrypt": "^5.1.1",
+    "clsx": "^2.0.0",
+    "formik": "^2.4.6",
+    "framer-motion": "^10.16.0",
     "mongoose": "^8.5.1",
     "next": "14.2.5",
+    "next-themes": "0.2.1",
     "react": "^18.3.1",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.4.0",
+    "yup": "^1.4.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

@@ -1,9 +1,5 @@
 'use client'
-
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-
-
 
 const ExcalidrawWrapper = dynamic(
   async () => (await import("@/components/ExcalidrawWraper/Excalidrawrapper")).default,
@@ -13,8 +9,8 @@ const ExcalidrawWrapper = dynamic(
 );
 export default function Tool(){
   return (
-    <main className="min-h-screen h-screen w-full">
-      <ExcalidrawWrapper />
-    </main>
+      <main className="min-[calc(100vh-64px)] h-[calc(100vh-64px)] w-full">
+        <ExcalidrawWrapper />
+      </main>
   );
 }
