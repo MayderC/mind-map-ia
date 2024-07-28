@@ -1,6 +1,11 @@
 import Image from "next/image"
 
-export const SummaryItemList = () => {
+type SummaryItemListProps = {
+  onClick: (data: any) => void;
+  data: any;
+}
+
+export const SummaryItemList = ({onClick, data}:SummaryItemListProps) => {
   return (
     <div className="h-[65px] w-[288px] text-gray-300 bg-zinc-950 rounded-lg p-3  flex justify-between">
       <div>
@@ -14,7 +19,7 @@ export const SummaryItemList = () => {
         </div>
       </div>
       <div className="ml-2 flex hover:scale-110 transition-all hover:cursor-pointer">
-        <Image src="/remove.svg" width={25} height={25} alt="more-icon" />
+        <Image onClick={()=> onClick(data)} src="/remove.svg" width={20} height={20} alt="more-icon" />
       </div>
     </div>
   )
