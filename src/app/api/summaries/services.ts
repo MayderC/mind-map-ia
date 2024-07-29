@@ -1,5 +1,5 @@
-import {Summary, Map} from '@/models';
-import { IMap } from '@/models/Map';
+import {Summary, Map} from '@/server-logic/models';
+import { IMap } from '@/server-logic/models/Map';
 
 export const getSummaryById = async (summaryId: string) => {
     try {

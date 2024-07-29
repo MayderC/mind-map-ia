@@ -1,5 +1,5 @@
 import {UserRequest, UserResponse, UserResponseWithSummaries} from "@/app/api/auth/interfaces";
-import {User} from '@/models'
+import {User} from '@/server-logic/models'
 import {hashSync, compareSync} from "bcrypt"
 export const login = async (req: UserRequest) => {
 

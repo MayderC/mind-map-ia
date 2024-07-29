@@ -1,4 +1,4 @@
-import {conexion} from "@/utils/db";
+import {conexion} from "@/server-logic/utils/db";
 
 export function register() {
     //conexion();

@@ -1,6 +1,6 @@
-import {Summary, User} from '@/models';
+import {Summary, User} from '@/server-logic/models';
 import {deleteSummaryById} from "@/app/api/summaries/services";
-import {ISummary} from "@/models/Summary";
+import {ISummary} from "@/server-logic/models/Summary";
 
 export const getSummariesByUserId = async (userId: string) => {
     try {

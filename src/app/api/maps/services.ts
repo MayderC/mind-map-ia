@@ -1,4 +1,4 @@
-import { Map } from "@/models";
+import { Map } from "@/server-logic/models";
 
 
 export const getMapById = async (mapId: string) => {

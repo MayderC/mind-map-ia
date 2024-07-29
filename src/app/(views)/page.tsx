@@ -1,6 +1,6 @@
 'use client';
-import GenericButton from "@/components/Button//GenericButton/GenericButton";
-import ButtonColor from "@/components/Button/ButtonStar/ButtonColor";
+import GenericButton from "@/presentation-ui/components/Button/GenericButton/GenericButton";
+import ButtonColor from "@/presentation-ui/components/Button/ButtonStar/ButtonColor";
 import  Image  from 'next/image';
 
 export default function Home() {

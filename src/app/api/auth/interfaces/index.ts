@@ -1,4 +1,4 @@
-import {ISummary} from "@/models/Summary";
+import {ISummary} from "@/server-logic/models/Summary";
 
 export interface UserRequest {
     email: string;
