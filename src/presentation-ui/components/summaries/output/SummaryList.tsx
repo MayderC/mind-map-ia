@@ -30,7 +30,7 @@ export const SummaryList = ({summaries}: SummaryListProps) => {
           ))}
         </div>
         <div className="flex absolute bg-primary-dark w-full left-0 justify-center rounded-lg items-center py-5 bottom-0">
-          <NextLink href="/app/summaries/add-summary" legacyBehavior>
+          <NextLink href="/dashboard/summaries/add-summary" legacyBehavior>
             <a className="bg-primary-light text-zinc-950 font-semibold p-2 rounded-lg">Add Summary</a>
           </NextLink>
         </div>

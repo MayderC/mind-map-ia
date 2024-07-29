@@ -40,34 +40,31 @@ export const SidebarWrapper = () => {
             />
             <SidebarMenu title="Main Menu">
             <SidebarItem
-                isActive={pathname === "/app/summaries"}
+                isActive={pathname === "/dashboard/summaries"}
                 title="Summaries"
-                href="/app/summaries"
+                href="/dashboard/summaries"
                 icon={<ReportsIcon />}
               />
               <SidebarItem
-                isActive={pathname === "/payments"}
+                isActive={pathname === "/dashboard/maps"}
                 title="Maps"
                 icon={<PaymentsIcon />}
               />
 
               <SidebarItem
-                isActive={pathname === "/customers"}
+                isActive={pathname === "/dashboard/chat"}
                 title="Chat IA"
-                href="/app/chat/"
+                href="/dashboard/chat/"
                 icon={<CustomersIcon />}
               />
-              <SidebarItem
-                isActive={pathname === "/products"}
-                title="Maps"
-                icon={<ProductsIcon />}
-              />
+
             </SidebarMenu>
 
             <SidebarMenu title="General">
               <SidebarItem
-                isActive={pathname === "/settings"}
+                isActive={pathname === "/dashboard/settings"}
                 title="Settings"
+                href="/dashboard/settings"
                 icon={<SettingsIcon />}
               />
             </SidebarMenu>

@@ -23,7 +23,7 @@ export default function Home() {
             </p>
           </div>
           <div className="w-full flex items-center justify-start mt-2 px-2 gap-3">
-            <GenericButton onClick={()=> console.log("Hola")} isLink={true} link="/app" text="Get started" theme="dark" fullWidth={false} type="solid" />
+            <GenericButton onClick={()=> console.log("Hola")} isLink={true} link="/dashboard" text="Get started" theme="dark" fullWidth={false} type="solid" />
             <GenericButton onClick={()=> console.log("Hola")} isLink={true} text="More Info" theme="light" fullWidth={false} type="light" />
           </div>
         </div>
