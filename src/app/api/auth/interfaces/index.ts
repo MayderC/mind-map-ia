@@ -22,3 +22,8 @@ export interface UserLoginResponse {
     token: string;
     user: UserResponse;
 }
+
+
+export interface UserLoginRequest extends Omit<UserRequest, 'name'> {
+    id?: string;
+}

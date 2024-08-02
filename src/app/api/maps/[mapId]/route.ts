@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { updateMap } from "../../summaries/services";
-import { getMapById } from "../services";
+import { getMapById } from "@/server-logic/services/map.service";
 
 
 export const PUT = async (req: Request, context: any) => {

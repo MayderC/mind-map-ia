@@ -1,5 +1,5 @@
 import { AuthLayoutWrapper } from "@/presentation-ui/components/auth/authLayout";
-import "@/styles/globals.css";
+import "@/app/(views)/globals.css";
 
 export default function RootLayout({
   children,

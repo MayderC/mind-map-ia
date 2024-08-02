@@ -1,20 +1,20 @@
 "use client";
 import { Excalidraw, MainMenu, WelcomeScreen } from "@excalidraw/excalidraw";
 
-import { ButtonStar } from "../Button/ButtonStar/ButtonStar";
+//import { ButtonStar } from "../Button/ButtonStar/ButtonStar";
 
 const ExcalidrawWrapper: React.FC = () => {
 
-  const handleSelect = () => {
-    console.log('Hola');
-  };
+  // const handleSelect = () => {
+  //   console.log('Hola');
+  // };
 
   return (
     <Excalidraw
           theme="dark"
-          renderTopRightUI={(isMobile, appState) => (
-            <ButtonStar onSelect={handleSelect} text="IA tool" isMobile={isMobile} appState={appState} />
-          )}
+          // renderTopRightUI={(isMobile, appState) => (
+          //   <ButtonStar onSelect={handleSelect} text="IA tool" isMobile={isMobile} appState={appState} />
+          // )}
         >
           <MainMenu>
             <MainMenu.ItemLink href="https://google.com">

@@ -8,24 +8,32 @@ import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { login } from "@/presentation-ui/services/auth.service";
 
 export const Login = () => {
   const router = useRouter();
 
   const initialValues: LoginFormType = {
-    email: "admin@acme.com",
-    password: "admin",
+    email: "test1@mgail.com",
+    password: "password",
   };
 
-  const handleLogin = useCallback(
-    async (values: LoginFormType) => {
+  const handleLogin = async (values: LoginFormType) => {
       // `values` contains email & password. You can use provider to connect user
+      const response = await login(values.email, values.password);
+      console.log(response);
+      if(response.ok){
+        console.log('Login successful');
+        try {
+            //await router.push('/dashboard');
+            window.location.href = '/dashboard';
+            console.log('Redirection successful');
+        } catch (error) {
+            console.error('Error during redirection:', error);
+        }
+      }
+  }
 
-      await createAuthCookie();
-      router.replace("/");
-    },
-    [router]
-  );
 
   return (
     <>

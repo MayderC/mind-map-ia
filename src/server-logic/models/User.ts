@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 import {ISummary} from './Summary';
-import {ROLES} from "@/server-logic/utils/constants";
+import {ROLES} from "@/shared/constants";
 import mongoose from 'mongoose';
 export interface IUser {
     _id?: string;

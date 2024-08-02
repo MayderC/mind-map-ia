@@ -1,7 +1,10 @@
-import {UserRequest, UserResponse, UserResponseWithSummaries} from "@/app/api/auth/interfaces";
+import {UserLoginRequest, UserRequest, UserResponse} from "@/app/api/auth/interfaces";
 import {User} from '@/server-logic/models'
 import {hashSync, compareSync} from "bcrypt"
-export const login = async (req: UserRequest) => {
+
+
+
+export const login = async (req: UserLoginRequest) => {
 
     const user = await User.findOne ({email: req.email})
     if (!user)throw new Error('Auth failed')
@@ -11,7 +14,7 @@ export const login = async (req: UserRequest) => {
     return rest
 }
 
-export  const findUser = async (req: UserRequest):Promise<UserResponse | null> => {
+export  const findUser = async (req: UserLoginRequest):Promise<UserResponse | null> => {
     try {
         const user = await User.findOne({email: req.email})
         if (!user) return null

@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server";
-import {findUserById} from "@/app/api/auth/service";
-import {deleteSummaryFromUser} from "@/app/api/users/services";
+import {findUserById} from "@/server-logic/services/auth.service";
+import {deleteSummaryFromUser} from "@/server-logic/services/summary.service";
 
 
 export const DELETE = async (req: Request, context: any) => {

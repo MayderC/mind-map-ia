@@ -1,9 +1,11 @@
 import {NextResponse} from "next/server";
-import {addSummaryToUser, deleteSummaryFromUser, getSummariesByUserId, saveSummary} from "@/app/api/users/services";
-import {findUserById} from "@/app/api/auth/service";
+import {addSummaryToUser,  getSummariesByUserId, saveSummary} from "@/server-logic/services/summary.service";
+import {findUserById} from "@/server-logic/services/auth.service";
 
 export const GET = async (req: Request, context: any) => {
     const userId = context.params['userId']
+
+    console.log('GET SUMMARIES', userId)
 
     try {
         const user = await findUserById(userId)

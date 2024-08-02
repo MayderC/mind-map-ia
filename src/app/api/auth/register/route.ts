@@ -1,12 +1,13 @@
 import { NextResponse} from "next/server";
-import {findUser, register} from '../service'
+import {findUser, register} from '@/server-logic/services/auth.service'
 
 export const POST = async (req: Request) => {
+    console.log('register')
         
     const {email, password, name} = await req.json()
     
-    if (!email || !password) return NextResponse
-        .json({ message: 'Email and password are required' }, { status: 400 });
+    if (!email || !password || !name) return NextResponse
+        .json({ message: 'Email, Name and password are required' }, { status: 400 });
 
     try {
         const userToRegister = {email, password, name}
