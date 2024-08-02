@@ -30,9 +30,8 @@ export const POST = async (req: Request) => {
           maxAge: 24 * 60 * 60,
           sameSite: "strict"
         });
-
-        
-        return NextResponse.json({ user: user }, { status: 200 });
+        user.summaries=[]
+        return NextResponse.json({user} , { status: 200 });
 
     } catch (error) {
       console.log(error)

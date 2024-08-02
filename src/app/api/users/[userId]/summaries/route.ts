@@ -1,6 +1,8 @@
 import {NextResponse} from "next/server";
 import {addSummaryToUser,  getSummariesByUserId, saveSummary} from "@/server-logic/services/summary.service";
 import {findUserById} from "@/server-logic/services/auth.service";
+import { cookies } from "next/headers";
+import {decodeJwt} from 'jose'
 
 export const GET = async (req: Request, context: any) => {
     const userId = context.params['userId']

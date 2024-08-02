@@ -1,15 +1,8 @@
 
 import {Schema} from "mongoose";
-import {IMap} from "@/server-logic/models/Map";
 import mongoose from 'mongoose';
+import {ISummary} from "@/shared/interfaces/ISummary";
 
-export interface ISummary {
-    _id?: string;
-    title: string;
-    description: string;
-    content: string;
-    maps?: IMap[];
-}
 
 const summarySchema = new Schema<ISummary>({
     title: { type: String, required: true },

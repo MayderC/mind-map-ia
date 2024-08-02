@@ -16,14 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body className={clsx("font-sans antialiased", fontSans.className)}>
+      <main className={clsx("font-sans antialiased", fontSans.className)}>
         <Providers>
           <Layout>
             {children}
           </Layout>
         </Providers>
-      </body>
-    </html>
-  );
+      </main>
+  )
 }

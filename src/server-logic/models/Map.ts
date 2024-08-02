@@ -1,17 +1,9 @@
 import mongoose, {Schema} from "mongoose";
-
+import { IMap } from "@/shared/interfaces/IMap";
 
 // the gojsStructure is a JSON object defined by the user summarization
 // depending on the user's input, the structure of the object will change
 // we don't know the structure of this object, so we define it as any
-export interface IMap {
-    _id?: string;
-    title: string;
-    description: string;
-    type: string;
-    mermaidSyntax: string;
-    gojsStructure: any
-}
 
 const mapSchema = new Schema<IMap>({
     title: { type: String, required: true },

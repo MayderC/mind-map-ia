@@ -1,6 +1,6 @@
 import {Summary, User} from '@/server-logic/models';
 import {deleteSummaryById} from "@/app/api/summaries/services";
-import {ISummary} from "@/server-logic/models/Summary";
+import {ISummary} from "@/shared/interfaces/ISummary";
 
 export const getSummariesByUserId = async (userId: string) => {
     try {
@@ -25,7 +25,6 @@ export const saveSummary = async (summary: any) => {
 export const addSummaryToUser = async (userId: string, summaryId: string) => {
     try {
         const user = await User.findByIdAndUpdate(userId, {$push: {summaries: summaryId}}, {new: true});
-        user.summaries.push(summaryId);
         return await user.save();
     }catch (e) {
         console.log(e)

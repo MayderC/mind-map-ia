@@ -1,18 +1,17 @@
 "use client";
 
-import { createAuthCookie } from "@/server-logic/services/auth.action";
 import { LoginSchema } from "@/presentation-ui/helpers/schemas";
 import { LoginFormType } from "@/presentation-ui/helpers/types";
 import { Button, Input } from "@nextui-org/react";
 import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
 import { login } from "@/presentation-ui/services/auth.service";
+import { useUser } from "@/presentation-ui/hooks/useUser";
 
 export const Login = () => {
   const router = useRouter();
-
+  const {login: loginContext} = useUser();
   const initialValues: LoginFormType = {
     email: "test1@mgail.com",
     password: "password",
@@ -24,9 +23,11 @@ export const Login = () => {
       console.log(response);
       if(response.ok){
         console.log('Login successful');
+        loginContext(response.data);
         try {
             //await router.push('/dashboard');
-            window.location.href = '/dashboard';
+            //window.location.href = '/dashboard';
+            router.push('/dashboard');
             console.log('Redirection successful');
         } catch (error) {
             console.error('Error during redirection:', error);

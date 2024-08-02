@@ -1,15 +1,8 @@
 import { Schema } from 'mongoose';
-import {ISummary} from './Summary';
 import {ROLES} from "@/shared/constants";
 import mongoose from 'mongoose';
-export interface IUser {
-    _id?: string;
-    name: string;
-    email: string;
-    role?: ROLES[];
-    summaries?: ISummary[];
-    password: string;
-}
+import { IUser } from '@/shared/interfaces/IUser';
+
 
 const userSchema = new Schema<IUser>({
     name: { type: String, required: true },
