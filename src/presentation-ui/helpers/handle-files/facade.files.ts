@@ -6,12 +6,12 @@ export class FilesFacade {
     docx: "docx",
   }
 
-  async getTextFromPDF(file: File): Promise<string> {}
+  async getTextFromPDF(file: File) {}
 
-  async getTextFromDocx(file: File): Promise<string> {}
+  async getTextFromDocx(file: File) {}
 
 
-  async extractText(type: string, file: File): Promise<string> {
+  async extractText(type: string, file: File) {
     switch (type) {
       case this._validTypes.pdf:
         return this.getTextFromPDF(file);
