@@ -5,6 +5,7 @@ const ExcalidrawWrapper = dynamic(
   async () => (await import("@/presentation-ui/components/ExcalidrawWraper/Excalidrawrapper")).default,
   {
     ssr: false,
+    loading: () => <p>Loading...</p>,
   },
 );
 export default function Tool(){
