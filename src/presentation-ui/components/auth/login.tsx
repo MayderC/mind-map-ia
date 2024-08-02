@@ -26,8 +26,8 @@ export const Login = () => {
         loginContext(response.data);
         try {
             //await router.push('/dashboard');
-            //window.location.href = '/dashboard';
-            router.push('/dashboard');
+            window.location.href = '/dashboard';
+            //router.push('/dashboard');
             console.log('Redirection successful');
         } catch (error) {
             console.error('Error during redirection:', error);
