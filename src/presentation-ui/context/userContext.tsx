@@ -4,7 +4,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { LoginProps, UserContextType } from '../interfaces';
 
 export const UserContext = createContext<UserContextType | null>(null);
-
 export const LOCAL_STORAGE_KEY = 'user';
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
@@ -12,7 +11,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)!);
-    console.log(user, "LOAD DATA LOCAL")
     if (user) setUser(user);
   }, []);
 

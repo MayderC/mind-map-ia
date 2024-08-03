@@ -1,5 +1,5 @@
 'use client'
-import { GenericModal } from "@/presentation-ui/components/models/GenericModal";
+import { GenericModal } from "@/presentation-ui/components/modals/GenericModal";
 import { SummaryItemList } from "./SummaryItemList";
 import { useState } from "react";
 import NextLink from "next/link";
@@ -7,14 +7,15 @@ import { ISummary } from "@/shared/interfaces/ISummary";
 
 interface SummaryListProps {
   summaries: ISummary[];
+  setSelectSummary: Function
 }
 
-export const SummaryList = ({summaries}: SummaryListProps) => {
+export const SummaryList = ({summaries, setSelectSummary}: SummaryListProps) => {
 
   const [showModal, setShowModal] = useState(false)
 
 
-  const slectDelete = (id: any) => {
+  const selectDelete = (id: any) => {
     console.log("Delete summar id: ", id)
     console.log("Show modal", showModal)
     setShowModal(true)
@@ -22,11 +23,11 @@ export const SummaryList = ({summaries}: SummaryListProps) => {
 
   return (
     <div className="h-full flex rounded-lg w-full relative">
-      <div className="bg-primary-dark p-5 rounded-lg flex flex-col gap-4  relative">
-        <div className="overflow-y-scroll no-scrollbar flex flex-col gap-4">
+      <div className="w-full bg-primary-dark p-5 rounded-lg flex flex-col gap-4  relative">
+        <div className=" overflow-y-scroll no-scrollbar flex flex-col gap-4">
           {summaries.map((summary) => (
             <div key={summary._id}>
-              <SummaryItemList onClick={()=> slectDelete(summary._id)} data={summary} />
+              <SummaryItemList onSelect={()=> setSelectSummary(summary)} onDelete={()=> selectDelete(summary._id)} data={summary} />
             </div>
           ))}
         </div>

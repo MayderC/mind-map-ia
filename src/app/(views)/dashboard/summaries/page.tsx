@@ -8,13 +8,15 @@ import { useEffect, useState } from "react";
 
 export default function Summaries(){
   const [summaries, SetSummaries] = useState<ISummary[]>([])
+
+  //selected summary
+  const [selectSummary, setSelectSummary] = useState<ISummary | null>(null)
+
   const ctx = useUser()
 
   useEffect(() => {
     if(!ctx?.user) return 
-    console.log(ctx?.user?.user._id, 'Summary')
     const id = ctx?.user?.user?._id
-    console.log(id, "ID ADDED")
     getSummaries(id).then((response) => {
       const summaries = response.data
       SetSummaries(summaries)
@@ -24,10 +26,10 @@ export default function Summaries(){
   return (
       <main className="h-[calc(100vh-64px)] gap-5  w-full lg:p-10 p-5 flex justify-between flex-wrap">
         <div className="w-[328px] h-full">
-          <SummaryList summaries={summaries} />
+          <SummaryList setSelectSummary={setSelectSummary} summaries={summaries} />
         </div>
         <div className="w-[calc(100%-348px)] h-full">
-          <SummaryPreview></SummaryPreview>
+          <SummaryPreview summary={selectSummary}></SummaryPreview>
         </div>
       </main>
   );
