@@ -12,7 +12,7 @@ export const getSummaryById = async (summaryId: string) => {
 
 export const updateSummaryById = async (summaryId: string, summary: any) => {
     try {
-        return await Summary.findByIdAndUpdate(summaryId, summary, {new: true});
+        return await Summary.findOneAndUpdate({ _id: summaryId }, { $set: summary }, { new: true });
     }catch (e) {
         console.log(e)
         throw new Error('Error updating summary by id');

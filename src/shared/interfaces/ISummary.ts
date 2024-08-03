@@ -1,4 +1,5 @@
 import { IMap } from './IMap';
+import { decodeJwt } from 'jose';
 
 export interface ISummary {
   _id?: string;
@@ -6,4 +7,6 @@ export interface ISummary {
   description: string;
   content: string;
   maps?: IMap[];
+  date?: Date;
+  words: number;
 }

@@ -14,7 +14,7 @@ export const GET = async (req: Request, context: any) => {
 }
 
 export const PUT = async (req: Request, context: any) => {
-    const summaryId = context.params['id']
+    const summaryId = context.params['summaryId']
     const body = await req.json()
 
     const summary = await updateSummaryById(summaryId, body)
