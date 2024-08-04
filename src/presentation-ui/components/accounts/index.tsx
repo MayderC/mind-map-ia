@@ -9,7 +9,6 @@ import { TrashIcon } from "@/presentation-ui/components/icons/accounts/trash-ico
 import { HouseIcon } from "@/presentation-ui/components/icons/breadcrumb/house-icon";
 import { UsersIcon } from "@/presentation-ui/components/icons/breadcrumb/users-icon";
 import { SettingsIcon } from "@/presentation-ui/components/icons/sidebar/settings-icon";
-import { TableWrapper } from "@/presentation-ui/components/table/table";
 import { AddUser } from "./add-user";
 
 export const Accounts = () => {
@@ -55,9 +54,6 @@ export const Accounts = () => {
             Export to CSV
           </Button>
         </div>
-      </div>
-      <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapper />
       </div>
     </div>
   );
