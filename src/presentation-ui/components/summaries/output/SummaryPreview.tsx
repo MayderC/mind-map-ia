@@ -58,9 +58,11 @@ export const SummaryPreview = ({summary}: SummaryPreviewProps) => {
                   options={{ wrapper: 'article',
                      
                     overrides: {
-                      h1: { component: 'h1', props: { className: 'text-2xl font-semibold' } },
-                      h2: { component: 'h2', props: { className: 'text-lg font-semibold' } },
-                      strong: { component: 'p', props: { className: 'font-semibold text-blue-400 block mt-2 subtitles' } },
+                      h1: { component: 'h1', props: { className: 'text-2xl font-semibold text-blue-400 block mt-3 subtitles' } },
+                      h2: { component: 'h2', props: { className: 'text-lg font-semibold text-blue-400 block mt-3 subtitles' } },
+                      h3: { component: 'h3', props: { className: 'text-base font-semibold text-blue-400 block mt-3 subtitles' } },
+                      h4: { component: 'h4', props: { className: 'text-sm font-semibold text-blue-400 block mt-3 subtitles' } },
+                      strong: { component: 'p', props: { className: 'font-semibold text-blue-400 block mt-3 subtitles' } },
                       //remove text decoration from links
                     }}} >
                   {summary ? summary.content: 'Select a summary from the list to preview'}
