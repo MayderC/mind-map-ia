@@ -8,5 +8,5 @@ export interface ISummary {
   content: string;
   maps?: IMap[];
   date?: Date;
-  words: number;
+  words?: number;
 }

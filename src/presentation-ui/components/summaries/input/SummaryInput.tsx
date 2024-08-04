@@ -1,14 +1,75 @@
 'use client'
-import GenericButton from "@/presentation-ui/components/Button/GenericButton/GenericButton"
 
-export const SummaryInput = () => {
+import { useUser } from "@/presentation-ui/hooks/useUser"
+import { addSummary } from "@/presentation-ui/services/summary.service"
+import { ISummary } from "@/shared/interfaces/ISummary"
+import { useState } from "react"
+
+interface SummaryInputProps {
+  setSummaryParent: Function
+}
+
+export const SummaryInput = ({setSummaryParent}: SummaryInputProps) => {
+  
+  const ctx = useUser()
+  const [summary, setSummary] = useState<ISummary>()
+
+
+  const handleSummarize = async(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if(!summary) return
+    if(!ctx?.user) return 
+    const id = ctx?.user?.user?._id
+    const response = await addSummary(id, summary) 
+    if(response.ok)setSummaryParent(response.data)
+  }
+
+  // const handleAttachFile = (e) => {}
+
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setSummary((prev) => ({
+      ...prev,
+      title: prev?.title || '',
+      description: prev?.description || '',
+      content: prev?.content || '',
+      [name]: value || ''
+    }))
+  }
+
+
+
   return (
     <>
-      <form className="w-full h-full">
-        <div className="w-full h-full rounded-lg dark:bg-primary-dark bg-gray-50 relative no-scrollbar">
-            <div className="px-4 h-full py-2 bg-white rounded-t-lg dark:bg-primary-dark no-scrollbar">
+      <form className="w-full h-[calc(100%-112px)]" onSubmit={handleSummarize}>
+        <div className="w-full h-12 px-4 py-2 bg-white rounded-lg dark:bg-primary-dark">
+            <label htmlFor="title" className="sr-only">Title</label>
+            <input
+              onChange={handleOnChange} 
+              id="title" 
+              name='title' 
+              type="text" 
+              className="w-full h-full outline-none px-0 text-sm text-gray-900 bg-white dark:bg-primary-dark dark:text-white dark:placeholder-gray-400" placeholder="Title" required />
+        </div>
+        <div className="w-full mt-2 h-12 px-4 py-2 bg-white rounded-lg dark:bg-primary-dark">
+            <label htmlFor="dec" className="sr-only">Title</label>
+            <input 
+              onChange={handleOnChange} 
+              id="dec" 
+              name="description" 
+              type="text" 
+              className="w-full h-full outline-none px-0 text-sm text-gray-900 bg-white dark:bg-primary-dark dark:text-white dark:placeholder-gray-400" placeholder="Description" required />
+        </div>
+        <div className="w-full mt-2 h-full rounded-lg dark:bg-primary-dark bg-gray-50 relative no-scrollbar">
+            <div className="px-4 h-full py-2 bg-white rounded-lg dark:bg-primary-dark no-scrollbar">
                 <label htmlFor="comment" className="sr-only">Your text</label>
-                <textarea id="comment" rows={4} className="w-full h-[calc(100%-56px)] no-scrollbar outline-none px-0 text-sm text-gray-900 bg-white dark:bg-primary-dark focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Paste or write your text" required ></textarea>
+                <textarea 
+                  onChange={handleOnChange}     
+                  name="content" 
+                  id="comment" 
+                  rows={4} 
+                  className="w-full h-[calc(100%-112px)] no-scrollbar outline-none px-0 text-sm text-gray-900 bg-white dark:bg-primary-dark focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Paste or write your text" required ></textarea>
             </div>
             <div className="flex items-center gap-2 p-3 relative bottom-14">
                 <button type="submit" className="inline-flex items-center py-2 px-4 text-sm text-center text-primary-dark font-bold bg-white rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-primary-light">

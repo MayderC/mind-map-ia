@@ -1,6 +1,7 @@
 import {Summary, User} from '@/server-logic/models';
 import {deleteSummaryById} from "@/app/api/summaries/services";
 import {ISummary} from "@/shared/interfaces/ISummary";
+import { getSummary } from './ia/llama3.service';
 
 export const getSummariesByUserId = async (userId: string) => {
     try {
@@ -12,10 +13,13 @@ export const getSummariesByUserId = async (userId: string) => {
     }
 }
 
-export const saveSummary = async (summary: any) => {
+export const saveSummary = async (summary: ISummary) => {
     try {
+        summary.content = await getSummary(summary.content);
         const summaryCreated = await Summary.create(summary);
-        return await summaryCreated.save();
+
+        await summaryCreated.save();
+        return summaryCreated.toObject(); 
     }catch (e) {
         console.log(e)
         throw new Error('Error saving summary');
