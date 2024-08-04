@@ -23,6 +23,7 @@
     "ia": "^0.0.1-beta",
     "jose": "^5.6.3",
     "jsonwebtoken": "^9.0.2",
+    "markdown-to-jsx": "^7.4.7",
     "mongoose": "^8.5.1",
     "next": "14.2.5",
     "next-themes": "0.2.1",
