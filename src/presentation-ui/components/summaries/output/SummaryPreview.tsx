@@ -5,7 +5,7 @@ import { SummaryPreviewFooter } from "./SummaryPreviewFooter";
 
 
 interface SummaryPreviewProps {
-  summary: ISummary | null
+  summary?: ISummary | null
 }
 
 export const SummaryPreview = ({summary}: SummaryPreviewProps) => {
