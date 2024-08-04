@@ -1,9 +1,13 @@
+import {MouseEventHandler} from 'react'
 
-export const SummaryPreviewFooter = () => {
+interface SummaryPreviewFooterProps {
+  handleDownload: MouseEventHandler<HTMLButtonElement>
+}
+
+export const SummaryPreviewFooter = ({ handleDownload}: SummaryPreviewFooterProps) => {
   return (
     <div className="w-full h-full flex items-end gap-4">
-      <button className="bg-primary-light text-zinc-950 font-semibold p-2 rounded-lg">Download PDF</button>
-      <button className="bg-primary-light text-zinc-950 font-semibold p-2 rounded-lg">Download DOCX</button>
+      <button onClick={handleDownload} className="bg-primary-light text-zinc-950 font-semibold p-2 rounded-lg">Download PDF</button>
     </div>
   )
 }

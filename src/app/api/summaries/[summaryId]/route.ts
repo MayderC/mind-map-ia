@@ -3,7 +3,7 @@ import {getSummaryById, updateSummaryById} from "@/app/api/summaries/services";
 
 export const GET = async (req: Request, context: any) => {
     try {
-        const summaryId = context.params['id']
+        const summaryId = context.params['summaryId']
         const summary = await getSummaryById(summaryId)
         if (!summary) return NextResponse.json({message: 'Summary not found'}, {status: 404})
         return NextResponse.json(summary)
