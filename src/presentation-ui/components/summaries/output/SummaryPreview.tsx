@@ -1,6 +1,7 @@
 import { ISummary } from "@/shared/interfaces/ISummary";
 import Markdown from 'markdown-to-jsx'
 import React from "react";
+import { SummaryPreviewFooter } from "./SummaryPreviewFooter";
 
 
 interface SummaryPreviewProps {
@@ -11,8 +12,8 @@ export const SummaryPreview = ({summary}: SummaryPreviewProps) => {
 
   return (
     <>
-      <div className="bg-primary-dark text-gray-300 p-5 rounded-lg h-full w-full overflow-y-scroll">
-        <div className="flex flex-col gap-4">
+      <div className="bg-primary-dark text-gray-300 p-5 rounded-lg h-full w-full">
+        <div className="flex flex-col gap-4 overflow-y-scroll h-[calc(100%-64px)] no-scrollbar">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold">
               {summary?.title}
@@ -47,6 +48,9 @@ export const SummaryPreview = ({summary}: SummaryPreviewProps) => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="h-16">
+          <SummaryPreviewFooter />
         </div>
       </div>
     </>

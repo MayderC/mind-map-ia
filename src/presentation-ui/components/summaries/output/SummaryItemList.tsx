@@ -20,7 +20,7 @@ export const SummaryItemList = ({onDelete, onSelect, data}:SummaryItemListProps)
         <div className="flex leading-3 text-sm justify-between gap-7 text-[#71717a]">
           <div className="">22/10/2024</div>
           <div>
-             {data.content.split(' ').length} 
+             {data.content.split(' ').length+' '} 
              words
           </div>
         </div>
