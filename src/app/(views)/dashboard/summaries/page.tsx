@@ -29,7 +29,7 @@ export default function Summaries(){
           <SummaryList setSelectSummary={setSelectSummary} summaries={summaries} />
         </div>
         <div className="w-[calc(100%-348px)] h-full">
-          <SummaryPreview summary={selectSummary}></SummaryPreview>
+          <SummaryPreview summary={selectSummary} ></SummaryPreview>
         </div>
       </main>
   );

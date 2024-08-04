@@ -70,7 +70,7 @@ export const SummaryPreview = ({summary}: SummaryPreviewProps) => {
           </div>
         </div>
         <div className="h-16">
-          <SummaryPreviewFooter handleDownload={handlePrint} />
+          <SummaryPreviewFooter handleDownload={handlePrint} summaryId={summary?._id || ''} />
         </div>
       </div>
     </>
