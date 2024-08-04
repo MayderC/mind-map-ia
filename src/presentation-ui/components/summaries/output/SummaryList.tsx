@@ -1,25 +1,19 @@
 'use client'
-import { GenericModal } from "@/presentation-ui/components/modals/GenericModal";
 import { SummaryItemList } from "./SummaryItemList";
-import { useState } from "react";
 import NextLink from "next/link";
 import { ISummary } from "@/shared/interfaces/ISummary";
 
-interface SummaryListProps {
+type SummaryListProps = {
   summaries: ISummary[];
   setSelectSummary: Function
 }
 
-export const SummaryList = ({summaries, setSelectSummary}: SummaryListProps) => {
+type SummaryItemListProps = {
+  onDelete: (data: ISummary) => void;
+}
 
-  const [showModal, setShowModal] = useState(false)
+export const SummaryList = ({summaries, setSelectSummary, onDelete}: SummaryListProps & SummaryItemListProps) => {
 
-
-  const selectDelete = (id: any) => {
-    console.log("Delete summar id: ", id)
-    console.log("Show modal", showModal)
-    setShowModal(true)
-  }
 
   return (
     <div className="h-full flex rounded-lg w-full relative">
@@ -27,7 +21,7 @@ export const SummaryList = ({summaries, setSelectSummary}: SummaryListProps) => 
         <div className=" overflow-y-scroll no-scrollbar flex flex-col gap-4">
           {summaries.map((summary) => (
             <div key={summary._id}>
-              <SummaryItemList onSelect={()=> setSelectSummary(summary)} onDelete={()=> selectDelete(summary._id)} data={summary} />
+              <SummaryItemList onSelect={()=> setSelectSummary(summary)} onDelete={onDelete} data={summary} />
             </div>
           ))}
         </div>
@@ -37,7 +31,6 @@ export const SummaryList = ({summaries, setSelectSummary}: SummaryListProps) => 
           </NextLink>
         </div>
       </div>
-      <GenericModal show={showModal} handleShow={setShowModal} />
     </div>
   );
 }

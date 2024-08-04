@@ -22,3 +22,12 @@ export const addSummary = async (userId: string, summary: ISummary): Promise<Htt
     return {data: null, ok: false};
   }
 };
+
+export const deleteSummary = async (userId: string, summaryId: string): Promise<HttpResponse<ISummary | null>> => {
+  try{
+    const response = await http.delete("/users/" + userId + "/summaries/" + summaryId);
+    return {data: response.data.summary, ok: true};
+  }catch (e) {
+    return {data: null, ok: false};
+  }
+};

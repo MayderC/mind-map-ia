@@ -8,9 +8,10 @@ import { FilesFacade } from "@/presentation-ui/helpers/handle-files/facade.files
 
 interface SummaryPreviewProps {
   summary?: ISummary | null
+  onDelete: (data: ISummary) => void
 }
 
-export const SummaryPreview = ({summary}: SummaryPreviewProps) => {
+export const SummaryPreview = ({summary, onDelete}: SummaryPreviewProps) => {
 
   const refContect = useRef<HTMLDivElement>(null)
 
@@ -37,8 +38,9 @@ export const SummaryPreview = ({summary}: SummaryPreviewProps) => {
             </h1>
               { summary && 
                 <div id="btns-summary" className="flex gap-4">
-                  <button className="bg-primary-light text-zinc-950 font-semibold p-2 rounded-lg">Edit</button>
-                  <button className="bg-red-600 text-white font-semibold p-2 rounded-lg">Delete</button>
+                  <button 
+                    onClick={()=> onDelete(summary)}
+                    className="bg-red-600 text-white font-semibold p-2 rounded-lg">Delete</button>
                 </div>
               }
           </div>
