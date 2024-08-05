@@ -1,5 +1,5 @@
-import { ISummary } from "@/shared/interfaces/ISummary";
 import http from "./http";
+import { ISummary } from "@/shared/interfaces/ISummary";
 import { HttpResponse } from './response.interface';
 
 
@@ -31,3 +31,12 @@ export const deleteSummary = async (userId: string, summaryId: string): Promise<
     return {data: null, ok: false};
   }
 };
+
+export const getSummaryById = async (summaryId: string): Promise<HttpResponse<ISummary | null>> => {
+  try{
+    const response = await http.get("/summaries/" + summaryId);
+    return {data: response.data, ok: true};
+  }catch (e) {
+    return {data: null, ok: false};
+  }
+}

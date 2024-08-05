@@ -1,9 +1,10 @@
 import {Summary, Map} from '@/server-logic/models';
-import { IMap } from '@/shared/interfaces/IMap';
+import { getMermaidTemplate } from '@/server-logic/services/ia/llama3.service';
+import { CreateMap, IMap } from '@/shared/interfaces/IMap';
 
 export const getSummaryById = async (summaryId: string) => {
     try {
-        return await Summary.findById(summaryId);
+        return await Summary.findById(summaryId).populate('maps').exec();
     }catch (e) {
         console.log(e)
         throw new Error('Error getting summary by id');
@@ -37,8 +38,10 @@ export const getMapsBySummaryId = async (summaryId: string) => {
     }
 }
 
-export const saveMap = async (map: any) => {
+export const saveMap = async (map: CreateMap) => {
     try {
+        //consult ia service for map generation, mermaidsin
+        map.mermaidSyntax = await getMermaidTemplate(map.content || '');
         const mapCreated = await Map.create(map);
         return  mapCreated.save();
     }catch (e) {

@@ -2,15 +2,13 @@ import Image from "next/image"
 import {ISummary} from '@/shared/interfaces/ISummary'
 
 type SummaryItemListProps = {
-  onDelete: (data: ISummary) => void;
-  onSelect: () => void;
   data: ISummary;
 }
 
-export const SummaryItemList = ({onDelete, onSelect, data}:SummaryItemListProps) => {
+export const SummaryItemListTool = ({data}:SummaryItemListProps) => {
   return (
-    <div onClick={()=> onSelect()} className="h-[65px] w-[288px] text-gray-300 bg-zinc-950 rounded-lg p-3  flex justify-between">
-      <div  className="flex items-center">
+    <div className="h-[65px] w-[310px] text-gray-300 bg-zinc-950 rounded-lg p-3  flex justify-start">
+      <div className="flex items-center mr-4">
         <Image src="/summaryItem.svg" width={20} height={20} alt="summary-icon" />
       </div>
       <div>
@@ -24,9 +22,6 @@ export const SummaryItemList = ({onDelete, onSelect, data}:SummaryItemListProps)
              words
           </div>
         </div>
-      </div>
-      <div  className="ml-2 flex hover:scale-110 transition-all hover:cursor-pointer">
-        <Image onClick={()=> onDelete(data)} src="/remove.svg" width={20} height={20} alt="more-icon" />
       </div>
     </div>
   )

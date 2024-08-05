@@ -24,3 +24,7 @@ export interface MerMaidMapContextType {
   setMap: (map: IMap) => void;
   removeMap: () => void;
 }
+
+export interface CreateMap extends IMap {
+  content? : string;
+}

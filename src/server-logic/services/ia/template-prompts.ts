@@ -64,6 +64,10 @@ const buildMermaidTemplate = (summary: string) => {
   7. Utiliza diagramas Mermaid para explicar los subtemas identificados y la relación entre ellos.
   8. Utiliza la Explicación de respuesta para explicar los subtemas identificados.
 
+  Muy importtante: no me brindes informacion del texto o algun contexto adicional, solo dame la respuesta sintetizada en un diagrama Mermaid.
+  SOLO RESPONDE CON DIAGRAMAS MERMAID, NO TEXTO.
+  NO RESPONDAS CON TEXTO, SOLO DIAGRAMAS MERMAID.
+
   [Fin de la guia general del flujo de trabajo]
 
   `

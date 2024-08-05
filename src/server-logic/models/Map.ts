@@ -7,9 +7,9 @@ import { IMap } from "@/shared/interfaces/IMap";
 
 const mapSchema = new Schema<IMap>({
     title: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String},
     type: { type: String, required: true },
     mermaidSyntax: { type: String, required: true },
-    gojsStructure: { type: Object, required: true }
+    gojsStructure: { type: Object }
 });
 export default mongoose.models.Map || mongoose.model('Map', mapSchema);
