@@ -74,7 +74,9 @@ export const SummaryPreview = ({summary, onDelete}: SummaryPreviewProps) => {
           </div>
         </div>
         <div className="h-16">
-          <SummaryPreviewFooter handleDownload={handlePrint} summaryId={summary?._id || ''} />
+          { summary && 
+            <SummaryPreviewFooter handleDownload={handlePrint} summaryId={summary?._id || ''} />
+          }
         </div>
       </div>
     </>

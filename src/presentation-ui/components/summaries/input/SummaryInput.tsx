@@ -68,8 +68,9 @@ export const SummaryInput = ({setSummaryParent}: SummaryInputProps) => {
                   onChange={handleOnChange}     
                   name="content" 
                   id="comment" 
-                  rows={4} 
-                  className="w-full h-[calc(100%-112px)] no-scrollbar outline-none px-0 text-sm text-gray-900 bg-white dark:bg-primary-dark focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Paste or write your text" required ></textarea>
+                  rows={4}
+                   
+                  className="w-full resize-none h-[calc(100%-112px)] no-scrollbar outline-none px-0 text-sm text-gray-900 bg-white dark:bg-primary-dark focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Paste or write your text" required ></textarea>
             </div>
             <div className="flex items-center gap-2 p-3 relative bottom-14">
                 <button type="submit" className="inline-flex items-center py-2 px-4 text-sm text-center text-primary-dark font-bold bg-white rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-primary-light">

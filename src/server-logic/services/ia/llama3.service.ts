@@ -1,4 +1,4 @@
-import { generateText } from 'ai';
+import { generateText, streamText } from 'ai';
 import { groq } from './ia.providers';
 import { IA_ALLOWED_MODELS } from './models';
 import { TEMPLATES } from './template-prompts';
@@ -22,6 +22,20 @@ export const getSummary = async(userText: string)=> {
     prompt: TEMPLATES.SUMMARY(userText),
   });
   return text
+}
+
+export const getSummaryStream = async(userText: string)=> {
+  const model = groq(IA_ALLOWED_MODELS.LLAMA_31.INSTANT);
+  const result = await streamText({
+    model: model,
+    prompt: TEMPLATES.SUMMARY(userText),
+  });
+
+  
+
+
+  return result
+
 }
 
 export const getMermaidTemplate = async(summary: string)=> {

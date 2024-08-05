@@ -13,14 +13,16 @@ export default function Summaries(){
   const [showModal, setShowModal] = useState(false)
   const [selectSummary, setSelectSummary] = useState<ISummary | null>(null)
   const [deleteSummaryData, setDeleteSummary] = useState<ISummary | null>(selectSummary)
+  const [loading, setLoading] = useState(true)
 
 
   const onInitGetSummaries = async () => {
-  
     const id = ctx?.user?.user?._id || ""
+    setLoading(true)
     getSummaries(id).then((response) => {
       const summaries = response.data
       SetSummaries(summaries)
+      setLoading(false)
     })
   }
 
@@ -46,13 +48,10 @@ export default function Summaries(){
     setShowModal(true)
   }
 
-
-
-
   return (
       <main className="h-[calc(100vh-64px)] gap-5  w-full lg:p-10 p-5 flex justify-between flex-wrap">
         <div className="w-[328px] h-full">
-          <SummaryList onDelete={onDelete} setSelectSummary={setSelectSummary} summaries={summaries} />
+          <SummaryList onDelete={onDelete} loading={loading} setSelectSummary={setSelectSummary} summaries={summaries} />
         </div>
         <div className="w-[calc(100%-348px)] h-full">
           <SummaryPreview onDelete={onDelete} summary={selectSummary} ></SummaryPreview>
