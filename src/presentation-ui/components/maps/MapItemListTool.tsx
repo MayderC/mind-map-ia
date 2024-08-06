@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { IMap } from "@/shared/interfaces/IMap";
+import { useMermaidMap } from "@/presentation-ui/hooks/useMeramaidMap";
 
 type MapItemListToolProps = {
   data: IMap;
@@ -7,11 +8,12 @@ type MapItemListToolProps = {
 
 export const MapItemListTool = ({data}: MapItemListToolProps) => {
 
-  console.log(data)
-  console.log("data")
+  const merCtx = useMermaidMap()
+  const border = merCtx?.map?._id === data._id ? 'border border-blue-600' : ''
 
   return (
-    <div className="h-[65px] w-[310px] text-gray-300 bg-zinc-950 rounded-lg p-3  flex justify-start">
+    <div 
+      className={"h-[65px] w-[310px] text-gray-300 bg-zinc-950 rounded-lg p-3  flex justify-start "+border}>
       <div className="flex items-center mr-4">
         <Image src="/summaryItem.svg" width={20} height={20} alt="summary-icon" />
       </div>

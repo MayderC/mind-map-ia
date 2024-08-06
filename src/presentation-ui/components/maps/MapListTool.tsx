@@ -16,6 +16,9 @@ type MapInfoFormProps = {
 
 const MapInfoForm = ({generateMap}: MapInfoFormProps) => {
   const [form, setForm] = useState<{title: string,type: string}>({title: '', type: 'mindmap'})
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>()
+
 
   const handleOnChange = (e: any) => {
     const {name, value} = e.target
@@ -23,15 +26,23 @@ const MapInfoForm = ({generateMap}: MapInfoFormProps) => {
     setForm({...form, [name]: value})
   }
 
-  const saveMap = () => {
-    generateMap(form)
+  const saveMap = async() => {
+    if(!form.title || !form.type){
+      setError(true)
+      setTimeout(()=> setError(false), 900)
+      return
+    } 
+    setLoading(true)
+    await generateMap(form)
+    setLoading(false)
   }
 
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="flex flex-col gap-2 w-full">
         <label htmlFor="title" className="text-white">Title</label>
-        <input 
+        <input
+
           onChange={handleOnChange}
           type="text" 
           name="title" 
@@ -49,11 +60,19 @@ const MapInfoForm = ({generateMap}: MapInfoFormProps) => {
         required>
           <option value="mindmap">Mindmap</option>
           <option value="flowchart">Flowchart</option>
+          <option value="sequence">Sequence</option>
+          <option value="gantt">Gantt</option>
+          <option value="class">Class</option>
+          <option value="state">State</option>
+          <option value="entity">Entity</option>
         </select>
       </div>
+        {error && <span className="text-red-500"> Fill all fields</span>}
       <div onClick={saveMap} className="btn-gradient whitespace-nowrap mt-2 w-[149px] relative z-10 inline-flex rounded-lg p-[2px] hover:cursor-pointer">
             <div className="relative z-10 rounded-lg bg-slate-900 px-3 text-center">
-              <p className="py-[6px]"><span className="font-semibold text-pink-500 hover:text-purple-500 ">IA</span> generate map</p>
+              <p className="py-[6px]"><span className="font-semibold text-pink-500 hover:text-purple-500 ">IA</span> 
+                {loading ? ' loading...' : ' generate map'}
+              </p>
             </div>
         </div>
     </div>
@@ -76,9 +95,12 @@ export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListTo
   return (
     <div className="flex rounded-lg w-full relative h-full">
       <div className="w-full bg-primary-dark p-5 rounded-lg flex flex-col gap-4  relative">
-        <p className="text-white font-semibold">Lista de mapas</p>
+        <p className="text-white font-semibold">
+          Select a map
+        </p>
         <div className=" overflow-y-scroll no-scrollbar flex flex-col gap-4">
           { showForm && <MapInfoForm generateMap={generateMap}/>}
+          <div className="flex flex-col gap-4 overflow-y-scroll no-scrollbar">
           {!loading
             ? <>
                 {maps.length > 0 
@@ -98,9 +120,10 @@ export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListTo
                 <p>Loading...</p>
               </div>
           }
+          </div>
         </div>
-        <div className="flex absolute bg-primary-dark w-full left-0 justify-center rounded-lg items-center py-5 bottom-0">
-        <button onClick={()=> setShowForm(!showForm)}  className="bg-primary-light text-zinc-950 font-semibold p-2 rounded-lg">{textBtn}</button>
+        <div className="flex relative bg-primary-dark w-full left-0 justify-center rounded-lg items-center  bottom-0">
+          <button onClick={()=> setShowForm(!showForm)}  className="bg-primary-light text-zinc-950 font-semibold p-2 rounded-lg">{textBtn}</button>
         </div>
       </div>
     </div>

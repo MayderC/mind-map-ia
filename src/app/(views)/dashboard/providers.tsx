@@ -4,6 +4,7 @@ import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { UserProvider } from "@/presentation-ui/context/userContext";
+import { MermaidMapProvider } from "@/presentation-ui/context/mermaidMapContext";
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -13,6 +14,7 @@ export interface ProvidersProps {
 export function Providers({ children, themeProps }: ProvidersProps) {
   return (
     <UserProvider>
+      <MermaidMapProvider>
       <NextUIProvider>
         <NextThemesProvider
           defaultTheme='system'
@@ -21,6 +23,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
           {children}
         </NextThemesProvider>
       </NextUIProvider>
+      </MermaidMapProvider>
     </UserProvider>
   );
 }

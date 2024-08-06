@@ -1,20 +1,26 @@
 "use client";
 import { Excalidraw, MainMenu, WelcomeScreen } from "@excalidraw/excalidraw";
+import { useMermaidMap } from "@/presentation-ui/hooks/useMeramaidMap";
+import { convertToExcalidrawElements}  from "@excalidraw/excalidraw"
+import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw";
+import { graphToExcalidraw } from "@excalidraw/mermaid-to-excalidraw/dist/graphToExcalidraw";
+import { useState, useEffect } from 'react'
+import { ExcalidrawElement } from "@excalidraw/excalidraw/types/element/types";
+import { AppState, ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types/types";
 
 //import { ButtonStar } from "../Button/ButtonStar/ButtonStar";
-
+type ExcaliDrawWrapperState = { elements?: ExcalidrawElement[], appState?: AppState }
 const ExcalidrawWrapper: React.FC = () => {
+  const merdCtx = useMermaidMap();
+  
+  const [excalidrawAPI, setExcalidrawAPI] =
+    useState<ExcalidrawImperativeAPI | null>(null);
 
-  // const handleSelect = () => {
-  //   console.log('Hola');
-  // };
 
   return (
     <Excalidraw
           theme="dark"
-          // renderTopRightUI={(isMobile, appState) => (
-          //   <ButtonStar onSelect={handleSelect} text="IA tool" isMobile={isMobile} appState={appState} />
-          // )}
+          excalidrawAPI={(api) => setExcalidrawAPI(api)}
         >
           <MainMenu>
             <MainMenu.ItemLink href="https://google.com">

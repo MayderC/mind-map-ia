@@ -38,11 +38,11 @@ export const getSummaryStream = async(userText: string)=> {
 
 }
 
-export const getMermaidTemplate = async(summary: string)=> {
+export const getMermaidTemplate = async(summary: string, type: string)=> {
   const model = groq(IA_ALLOWED_MODELS.LLAMA_31.INSTANT);
   const { text } = await generateText({
     model: model,
-    prompt: TEMPLATES.MERMAID(summary),
+    prompt: TEMPLATES.MERMAID(summary, type),
   });
   return text
 }

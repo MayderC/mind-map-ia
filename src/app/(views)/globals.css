@@ -66,3 +66,9 @@ body {
     transform: rotate(360deg);
   }
 }
+
+svg[role="graphics-document document"][aria-roledescription="error"] {
+  display: none;
+  position: relative;
+}
+

@@ -26,7 +26,7 @@ export const NavbarWrapper = ({ children }: Props) => {
         </NavbarContent>
         <NavbarContent className="w-full">
           <Input
-            placeholder="Pidele a la IA que te genere algo en Excalidraw"
+            placeholder="Pidele a la IA que te genere un diagrama en Excalidraw, perdoname Midudev no te enojes no lo termine"
             className="w-full text-white">
           </Input>
 
