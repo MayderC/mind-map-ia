@@ -2,7 +2,7 @@
 import { SummaryList } from "@/presentation-ui/components/summaries/output/SummaryList";
 import { GenericModal } from "@/presentation-ui/components/modals/GenericModal";
 import { SummaryPreview } from "@/presentation-ui/components/summaries/output/SummaryPreview";
-import { useUser } from "@/presentation-ui/context/userContext";
+import { useUser } from "@/presentation-ui/hooks/useUser";
 import { deleteSummary, getSummaries } from "@/presentation-ui/services/summary.service";
 import { ISummary } from "@/shared/interfaces/ISummary";
 import { useEffect, useState } from "react";
