@@ -18,6 +18,7 @@ export const POST = async (req: Request) => {
         return NextResponse.json({user: userRegistered}, { status: 201});
         
     } catch (error) {
+        console.log(error)
         return NextResponse.json({message: 'Failed to create user'}, { status: 400 });
     }
 }

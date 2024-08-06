@@ -1,17 +1,32 @@
-import { Input, Link, Navbar, NavbarContent } from "@nextui-org/react";
+import { Input,Navbar, NavbarContent } from "@nextui-org/react";
 import React from "react";
 
-import { SupportIcon } from "../icons/navbar/support-icon";
+
 
 import { BurguerButton } from "./burguer-button";
-import { NotificationsDropdown } from "./notifications-dropdown";
-import { UserDropdown } from "./user-dropdown";
+import { useRouter, usePathname } from "next/navigation";
+import { useTool } from "@/presentation-ui/hooks/useTool";
+
 
 interface Props {
   children: React.ReactNode;
 }
 
 export const NavbarWrapper = ({ children }: Props) => {
+
+  //use route 
+  const roter = useRouter()
+  const pathname = usePathname()
+  const tool = useTool()
+
+  const onClickTool = () => {
+    //get route is is not in the route dashboard redirect to dashboard
+    const isDashboard = pathname === '/dashboard'
+    if (!isDashboard) return roter.push('/dashboard')
+    if(isDashboard) tool?.toggle()
+    
+  }
+
   return (
     <div className="relative flex flex-col flex-1 bg-black overflow-y-auto overflow-x-hidden">
       <Navbar
@@ -30,27 +45,11 @@ export const NavbarWrapper = ({ children }: Props) => {
             className="w-full text-white">
           </Input>
 
-          <div className="btn-gradient relative z-10 inline-flex rounded-lg p-[2px] hover:cursor-pointer ">
-          <div className="relative z-10 rounded-lg bg-slate-900 px-3 text-center flex nowrap">
-            <p className="py-[6px] block flex nowrap"><span className="font-semibold text-pink-500 hover:text-purple-500 block">IA</span> Tool</p>
+          <div onClick={onClickTool} className="btn-gradient relative z-10 inline-flex rounded-lg p-[2px] hover:cursor-pointer ">
+            <div className="relative z-10 rounded-lg bg-slate-900 px-3 text-center flex nowrap">
+              <p className="py-[6px] block flex nowrap"><span className="font-semibold text-pink-500 hover:text-purple-500 block">IA</span> Tool</p>
+            </div>
           </div>
-      </div>
-
-        </NavbarContent>
-
-        <NavbarContent
-          justify="end"
-          className="w-fit data-[justify=end]:flex-grow-0"
-        >
-          <NotificationsDropdown />
-
-          <div className="max-md:hidden">
-            <SupportIcon />
-          </div>
-
-          <NavbarContent>
-            <UserDropdown />
-          </NavbarContent>
         </NavbarContent>
       </Navbar>
       {children}

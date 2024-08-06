@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { MapItemListTool } from "./MapItemListTool";
 import { IMap } from "@/shared/interfaces/IMap";
+import NextLink from "next/link";
 
 type MapListToolProps = {
   maps : IMap[];
@@ -82,8 +83,7 @@ const MapInfoForm = ({generateMap}: MapInfoFormProps) => {
 
 
 export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListToolProps ) => {
-
-  const [showForm, setShowForm] = useState<boolean>(false)
+  const [showForm, setShowForm] = useState<boolean>(true)
   const [textBtn, setTextBtn] = useState<string>('Create Map') 
 
   useEffect(() => {
@@ -95,9 +95,14 @@ export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListTo
   return (
     <div className="flex rounded-lg w-full relative h-full">
       <div className="w-full bg-primary-dark p-5 rounded-lg flex flex-col gap-4  relative">
-        <p className="text-white font-semibold">
-          Select a map
-        </p>
+        <div className="flex justify-between items-center">
+          <NextLink href="/dashboard" passHref>
+            <p className="text-white font-semibold text-2xl"> <span> ←</span> </p>
+          </NextLink>
+          <p className="text-white font-semibold">
+            Select a map
+          </p>
+        </div>
         <div className=" overflow-y-scroll no-scrollbar flex flex-col gap-4">
           { showForm && <MapInfoForm generateMap={generateMap}/>}
           <div className="flex flex-col gap-4 overflow-y-scroll no-scrollbar">

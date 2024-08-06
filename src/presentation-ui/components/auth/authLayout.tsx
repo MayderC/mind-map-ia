@@ -33,12 +33,9 @@ export const AuthLayoutWrapper = ({ children }: Props) => {
         </div>
 
         <div className='z-10'>
-          <h1 className='font-bold text-[45px]'>Mind Maps</h1>
+          <h1 className='font-bold text-[45px]'>Mind IA</h1>
           <div className='font-light text-slate-400 mt-4'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-            possimus voluptate, sapiente assumenda deserunt repellendus,
-            perferendis odit voluptas hic dolores laborum fugit ut? Architecto
-            quo ex quidem vitae quae rem.
+          MindIA es una aplicación avanzada diseñada para mejorar tu proceso de aprendizaje y estudio. Con MindIA, puedes generar resúmenes precisos y detallados que se dividen en subtemas,
           </div>
         </div>
       </div>

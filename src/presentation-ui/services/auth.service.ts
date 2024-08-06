@@ -22,12 +22,12 @@ export const logout = async () => {
   }
 }
 
-export const register = async (email: string, password: string, username: string) => {
+export const register = async (email: string, password: string, name: string) => {
   try{
     const response = await http.post('/auth/register', {
       email,
       password,
-      username
+      name
     });
     return { data: response.data, ok: true };
   }catch(e){

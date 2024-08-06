@@ -30,7 +30,3 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     </UserContext.Provider>
   );
 }
-
-export function useUser() {
-  return useContext(UserContext);
-}

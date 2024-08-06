@@ -8,6 +8,9 @@ import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { register } from "@/presentation-ui/services/auth.service";
+import { useUser } from "@/presentation-ui/hooks/useUser";
+
 
 export const Register = () => {
   const router = useRouter();
@@ -18,13 +21,22 @@ export const Register = () => {
     password: "admin",
     confirmPassword: "admin",
   };
+  const {login: loginContext} = useUser();
 
   const handleRegister = useCallback(
     async (values: RegisterFormType) => {
       // `values` contains name, email & password. You can use provider to register user
+      const response = await register(values.email, values.password, values.name);
+      if(response.ok){
+        loginContext(response.data);
+        try {
+            //await router.push('/dashboard');
+            window.location.href = '/dashboard';
 
-      await createAuthCookie();
-      router.replace("/");
+        } catch (error) {
+            console.error('Error during redirection:', error);
+        }
+      }
     },
     [router]
   );

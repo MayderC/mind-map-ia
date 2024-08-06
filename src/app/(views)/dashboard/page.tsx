@@ -5,6 +5,7 @@ import { SummaryListTool } from "@/presentation-ui/components/summaries/output/t
 import { ToolIA } from "@/presentation-ui/components/toolIA/ToolIA";
 import { useUser } from "@/presentation-ui/context/userContext";
 import { useMermaidMap } from "@/presentation-ui/hooks/useMeramaidMap";
+import { useTool } from "@/presentation-ui/hooks/useTool";
 import { CreateMap } from "@/presentation-ui/interfaces";
 import { createMapFromSummary } from "@/presentation-ui/services/maps.service";
 import { getSummaries, getSummaryById } from "@/presentation-ui/services/summary.service";
@@ -16,13 +17,14 @@ import { Suspense, useEffect, useState } from "react";
 // import Mermaid from "react-mermaid2"
 
 
-// const ExcalidrawWrapper = dynamic(
-//   async () => (await import("@/presentation-ui/components/ExcalidrawWraper/Excalidrawrapper")).default,
-//   {
-//     ssr: false,
-//     loading: () => <p>Loading...</p>,
-//   },
-// );
+const ExcalidrawWrapper = dynamic(
+  async () => (await import("@/presentation-ui/components/ExcalidrawWraper/Excalidrawrapper")).default,
+  {
+
+    ssr: false,
+    loading: () => <p>Loading...</p>,
+  },
+);
 
 type ToolIAState = "summary" | 'maps';
 
@@ -91,25 +93,30 @@ function Tool(){
     }
   }
 
+  const tool = useTool()
 
 
   return (
       <main className="min-[calc(100vh-64px)] h-[calc(100vh-70px)] w-full relative">
-        {(summaryId && merCtx?.map?._id) && <MermaidV2 markup={chart} />}
-        <ToolIA>
-          {(stepState == 'maps') && currentSummary  
-            ? <MapListTool 
-                generateMap={generateMap} 
-                loading={loadingSummaries} 
-                setSelctMap={selectMap} 
-                maps={currentSummary?.maps || []}
-              />
-            : <SummaryListTool  
-                summaries={summaries} 
-                loading={loadingSummaries}
-              />
+        {(summaryId && merCtx?.map?._id) ? <MermaidV2 markup={chart}/> : <ExcalidrawWrapper />}
+        <>
+          { tool?.show && 
+            <ToolIA>
+            {(stepState == 'maps') && currentSummary  
+              ? <MapListTool 
+                  generateMap={generateMap} 
+                  loading={loadingSummaries} 
+                  setSelctMap={selectMap} 
+                  maps={currentSummary?.maps || []}
+                />
+              : <SummaryListTool  
+                  summaries={summaries} 
+                  loading={loadingSummaries}
+                />
+            }
+            </ToolIA>
           }
-        </ToolIA>
+        </>
       </main>
   );
 }
