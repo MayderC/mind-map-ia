@@ -3,7 +3,7 @@ import {MermaidV2} from "@/presentation-ui/components/ExcalidrawWraper/MermaidV2
 import { MapListTool } from "@/presentation-ui/components/maps/MapListTool";
 import { SummaryListTool } from "@/presentation-ui/components/summaries/output/tool/SummaryListTool";
 import { ToolIA } from "@/presentation-ui/components/toolIA/ToolIA";
-import { useUser } from "@/presentation-ui/context/userContext";
+import { useUser } from "@/presentation-ui/hooks/useUser";
 import { useMermaidMap } from "@/presentation-ui/hooks/useMeramaidMap";
 import { useTool } from "@/presentation-ui/hooks/useTool";
 import { CreateMap } from "@/presentation-ui/interfaces";
