@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { MapItemListTool } from "./MapItemListTool";
 import { IMap } from "@/shared/interfaces/IMap";
 import NextLink from "next/link";
+import { useMermaidMap } from "@/presentation-ui/hooks/useMeramaidMap";
 
 type MapListToolProps = {
   maps : IMap[];
@@ -84,7 +85,8 @@ const MapInfoForm = ({generateMap}: MapInfoFormProps) => {
 
 export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListToolProps ) => {
   const [showForm, setShowForm] = useState<boolean>(true)
-  const [textBtn, setTextBtn] = useState<string>('Create Map') 
+  const [textBtn, setTextBtn] = useState<string>('Create Map')
+  const mermaid =useMermaidMap()
 
   useEffect(() => {
     if(showForm)setTextBtn('Close Form')
@@ -96,7 +98,7 @@ export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListTo
     <div className="flex rounded-lg w-full relative h-full">
       <div className="w-full bg-primary-dark p-5 rounded-lg flex flex-col gap-4  relative">
         <div className="flex justify-between items-center">
-          <NextLink href="/dashboard" passHref>
+          <NextLink onClick={()=> {mermaid?.removeMap()}} href="/dashboard" passHref>
             <p className="text-white font-semibold text-2xl"> <span> ←</span> </p>
           </NextLink>
           <p className="text-white font-semibold">

@@ -39,6 +39,13 @@ export const MermaidV2 = ({markup}: any) => {
         });
     }
     mermaidDraw()
+
+    return () => {
+      if (eleM) {
+        eleM.innerHTML = ''
+      }
+      (window as any).mermaid?.contentLoaded();
+    }
   }, [])
 
   function mermaidEval() {
