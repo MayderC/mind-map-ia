@@ -22,7 +22,10 @@ export const NavbarWrapper = ({ children }: Props) => {
   const onClickTool = () => {
     //get route is is not in the route dashboard redirect to dashboard
     const isDashboard = pathname === '/dashboard'
-    if (!isDashboard) return roter.push('/dashboard')
+    if (!isDashboard) {
+      tool?.set(true)
+      roter.push('/dashboard')
+    }
     if(isDashboard) tool?.toggle()
     
   }

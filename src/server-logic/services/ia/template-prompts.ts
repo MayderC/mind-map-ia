@@ -68,6 +68,7 @@ Styling: Customize the appearance of nodes, links, and text using CSS-like style
 
 const mermaidSyntaxExamples = `
 
+-------------------------------------
   graph TD
     start((start)) --> lock_booking
     lock_booking --> process_payment
@@ -79,71 +80,88 @@ const mermaidSyntaxExamples = `
     send_email --> finish
     release_booking --> finish
 
+-------------------------------------
+
+flowchart LR
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
 
 
-  flowchart LR
-      A[Hard edge] -->|Link text| B(Round edge)
-      B --> C{Decision}
-      C -->|One| D[Result one]
-      C -->|Two| E[Result two]
+-------------------------------------
 
+erDiagram
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ LINE-ITEM : contains
+  CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
 
-  erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE-ITEM : contains
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+-------------------------------------
 
+gitGraph
+  commit
+  commit
+  branch develop
+  checkout develop
+  commit
+  commit
+  checkout main
+  merge develop
+  commit
+  commit
 
-
-  gitGraph
-    commit
-    commit
-    branch develop
-    checkout develop
-    commit
-    commit
-    checkout main
-    merge develop
-    commit
-    commit
-
-
-  mindmap
-    root((mindmap))
-      Origins
-        Long history
-        ::icon(fa fa-book)
-        Popularisation
-          British popular psychology author Tony Buzan
-      Research
-        On effectiveness<br/>and features
-        On Automatic creation
-          Uses
-              Creative techniques
-              Strategic planning
-              Argument mapping
-      Tools
-        Pen and paper
-        Mermaid
-
-[utiliza los siguientes ejemplos para crear diagramas mermaid mas complejos]
+-------------------------------------
 
 mindmap
-    id[I am a square]
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness<br/>and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+
+--------------------------------
+Definir un único nodo raíz: Siempre comienza tu mindmap con un único nodo raíz que represente el tema principa
+Asegúrate de que todos los nodos secundarios estén conectados de forma jerárquica al nodo raíz. No puede haber nodos secundarios que no estén conectados a un nodo padre.
+Organiza la información en subcategorías que se conecten de forma lógica al nodo raíz
+Mantén la consistencia en la forma en que organizas y conectas los nodos. Cada nodo debe tener un padre y, si es necesario, hijos.
+
 
 mindmap
-    id(I am a rounded square)
+    id(Base de datos)
+      ¿Qué es una base de datos?
+        Conjunto de datos con procedencia similar
+        Procesados sistemáticamente
+      [Sistemas gestores de bases de datos]
+        Conjunto de programas para almacenar, modificar y extraer información
+        Permite el acceso a la información con herramientas específicas
+      [Clasificación de las bases de datos]
+        Variabilidad de los datos
+        Contenido de los datos
+        Modelo de los datos
+      [Sistemas gestores de bases de datos]
+        (Funciones y propiedades)
+            (Almacenamiento de datos)
+            Modificación de datos
+            Extracción de datos
+            Integración de datos
+            Administración de permisos
+            Recuperación de datos en caso de fallo
+    
+    
+solo existe un ID en el diagrama, el cual es el nodo raíz. Los subtemas están organizados de forma jerárquica y conectados al nodo raíz. Cada subtema tiene una relación con el tema principal. Los subtemas están organizados en subcategorías lógicas y coherentes. La información se presenta de forma clara y estructurada, siguiendo un flujo lógico de pensamiento.
 
-mindmap
-    id((I am a circle))
+estan ordenados de forma jerarquica y tabulados como 
+si fuera python.
 
-
-
-NOTA: NO INCLUYAS TEXTO EN ESTA SECCIÓN. SI HAY ERRORES EN EL TEXTO PROPORCIONADO, NO LOS INCLUYAS EN LA RESPUESTA.
-INTENTA NO INCLUIR ERRORES COMUNES EN LA RESPUESTA.
-
-NO olvides las comillas al inicio del diagrama y al final del diagrama.
-
+---------------------------------
 `
 
 const allow_diagramn= `
