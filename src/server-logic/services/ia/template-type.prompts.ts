@@ -141,11 +141,33 @@ erDiagram
 
 [Ejemplo]
 
-Descripción del Ejemplo
+
+Descripción del Ejemplo anterior
 Empleado trabaja en un Departamento. La relación es uno a muchos (||--o{).
 Departamento gestiona uno o más Proyectos. La relación es uno a muchos (||--o{).
 Empleado puede asignar múltiples Tareas. La relación es uno a muchos (||--o{).
 Tarea pertenece a un Proyecto. La relación es uno a muchos (||--o{).
+
+[Ejemplo]
+erDiagram
+    CAR ||--o{ NAMED-DRIVER : allows
+    CAR {
+        string registrationNumber
+        string make
+        string model
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        string firstName
+        string lastName
+        int age
+    }
+[Ejemplo]
+
+Descripción del Ejemplo anterior
+Una persona es un conductor nombrado de un automóvil. La relación es uno a muchos (||--o{).
+El automóvil permite uno o más conductores nombrados. La relación es uno a muchos (||--o{).
+Tabla intermedia NAMED-DRIVER para la relación muchos a muchos.
 
 NO SE USAN ESPACIOS EN LOS NOMBRES EN NINGUN NOMBRE O LUGAR
 NO SE USAN TILDES NI CARACTERES ESPECIALES EN NINGUN NOMBRE O LUGAR
