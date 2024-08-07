@@ -40,7 +40,6 @@ export const getMapsBySummaryId = async (summaryId: string) => {
 
 export const saveMap = async (map: CreateMap) => {
     try {
-        console.log(map.type, "TYPE")
         map.mermaidSyntax = await getMermaidTemplate(map.content || '', map.type);
         const mapCreated = await Map.create(map);
         return  mapCreated.save();
