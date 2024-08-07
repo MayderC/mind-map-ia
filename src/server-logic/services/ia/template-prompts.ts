@@ -1,10 +1,11 @@
 import { MAP_TYPES } from "@/shared/constants"
+import { get } from "http"
+import { classDiagram, entityRelationship, flowchart, gantt, mindmap, sequence, stateDiagram } from "./template-type.prompts"
 
 
 const summaryTemplate = (text: string) => {
 
 return `
-
   Por favor, genera el resumen y la explicación en el idioma del  [Texto proporcionado]. NO traduzcas el texto proporcionado a otro idioma. Responde en el idioma original del [Texto proporcionado]. si [Texto proporcionado] es en inglés responde en inglés, si es español responde en español, etc.
 
   [Texto proporcionado]
@@ -56,7 +57,6 @@ The icons are accessed via the syntax fa:#icon class name#.
     C4Context
 
   Gantt:	[task state]: done, active, crit, after	section 
-  Gitgraph:	[actions]: commit, branch, checkout, merge	 
   UML	[lifelines]:participant	activate, [container: loop, alt, opt	class
   Information	comment: %%	note
 
@@ -111,7 +111,6 @@ gitGraph
   commit
 
 -------------------------------------
-
 mindmap
   root((mindmap))
     Origins
@@ -126,40 +125,63 @@ mindmap
             Creative techniques
             Strategic planning
             Argument mapping
+-------------------------------------
+Prompt Detallado
+A continuación, te presento las instrucciones para crear diagramas de tipo mindmap utilizando Mermaid basados en un texto proporcionado. Presta especial atención a la estructura jerárquica de los nodos, asegurándote de que haya solo un nodo raíz y que todos los subtemas estén organizados jerárquicamente como subnodos de dicho nodo raíz. Además, no debe haber más de 10 subtemas directos del nodo raíz.
 
---------------------------------
-Definir un único nodo raíz: Siempre comienza tu mindmap con un único nodo raíz que represente el tema principa
-Asegúrate de que todos los nodos secundarios estén conectados de forma jerárquica al nodo raíz. No puede haber nodos secundarios que no estén conectados a un nodo padre.
-Organiza la información en subcategorías que se conecten de forma lógica al nodo raíz
-Mantén la consistencia en la forma en que organizas y conectas los nodos. Cada nodo debe tener un padre y, si es necesario, hijos.
+Instrucciones para la creación de diagramas mindmap en Mermaid:
+Diagrama Mermaid: Utiliza el tipo de diagrama mindmap.
+Nodo Raíz Único: El diagrama debe tener un único nodo raíz que represente el tema principal del contenido del resumen proporcionado. Este nodo será la única entrada sin tabulación o espacio adicional al comienzo de la línea.
+Subtemas: Todos los subtemas del resumen deben estar organizados jerárquicamente como subnodos del nodo raíz. No debe haber subtemas al mismo nivel que el nodo raíz. Cada subtema debe estar indentado con un nivel adicional de tabulación o espacio.
+Máximo de Subtemas: El nodo raíz no debe tener más de 10 subtemas directos. Si hay más de 10 subtemas en el resumen, agrúpalos en categorías lógicas para que el número de subtemas directos no exceda de 10.
+Estructura de Subcategorías: Si un subtema tiene subcategorías propias, estas también deben estar indentadas adecuadamente, manteniendo la jerarquía clara y lógica.
+Incluye pequeñas explicaciones de 10 a 15 palabras solo donde sea muy necesario para clarificar conceptos importantes.
+Sintaxis Correcta: Asegúrate de seguir la sintaxis correcta de Mermaid para evitar errores de parseo. Los subnodos deben estar conectados de forma jerárquica al nodo padre.
 
+[Texto Proporcionado]
+  ## Resumen de subtemas
+
+### Antecedentes
+El texto proporcionado analiza los antecedentes que llevaron a la Primera Guerra Mundial, incluyendo la carrera armamentista, el imperialismo y el colonialismo europeo, y el sistema de alianzas en Europa.
+
+### Imperialismo y colonialismo europeo
+El texto destaca la importancia del imperialismo y el colonialismo europeo en la configuración del mundo en vísperas de la Primera Guerra Mundial, y cómo las potencias europeas competían por la dominación de vastos territorios.
+
+### Sistema de alianzas
+El texto explica cómo el sistema de alianzas en Europa se fue desmantelando a lo largo del siglo XIX, y cómo las potencias europeas se agruparon en dos bloques principales: la Triple Entente y la Triple Alianza.
+
+### Preludio
+El texto describe los eventos que llevaron a la declaración de la guerra, incluyendo el asesinato del archiduque Francisco Fernando de Austria y la crisis de julio.
+
+## Resumen general
+
+La Primera Guerra Mundial fue un conflicto mundial que comenzó en 1914 y terminó en 1918. Fue causada por la carrera armamentista, el imperialismo y el colonialismo europeo, y el sistema de alianzas en Europa. El asesinato del archiduque Francisco Fernando de Austria y la crisis de julio fueron los eventos que llevaron a la declaración de la guerra. La guerra se libró en varios frentes, incluyendo el frente occidental, el frente oriental y el frente italiano. La guerra terminó con la derrota de las Potencias Centrales y la firma del Tratado de Versalles.
 
 mindmap
-    id(Base de datos)
-      ¿Qué es una base de datos?
-        Conjunto de datos con procedencia similar
-        Procesados sistemáticamente
-      [Sistemas gestores de bases de datos]
-        Conjunto de programas para almacenar, modificar y extraer información
-        Permite el acceso a la información con herramientas específicas
-      [Clasificación de las bases de datos]
-        Variabilidad de los datos
-        Contenido de los datos
-        Modelo de los datos
-      [Sistemas gestores de bases de datos]
-        (Funciones y propiedades)
-            (Almacenamiento de datos)
-            Modificación de datos
-            Extracción de datos
-            Integración de datos
-            Administración de permisos
-            Recuperación de datos en caso de fallo
-    
-    
-solo existe un ID en el diagrama, el cual es el nodo raíz. Los subtemas están organizados de forma jerárquica y conectados al nodo raíz. Cada subtema tiene una relación con el tema principal. Los subtemas están organizados en subcategorías lógicas y coherentes. La información se presenta de forma clara y estructurada, siguiendo un flujo lógico de pensamiento.
+    PrimeraGuerraMundial(Primera Guerra Mundial)
+        antecedentes(Antecedentes)
+            carreraArmamentista(Carrera armamentista)
+            imperialismoColonialismoEuropeo(Imperialismo y colonialismo europeo)
+            sistemaAlianzas(Sistema de alianzas)
+        imperialismoColonialismoEuropeo(Imperialismo y colonialismo europeo)
+            competicionDominacion(Competencia por la dominación de vastos territorios)
+        sistemaAlianzas(Sistema de alianzas)
+            tripleEntente(Triple Entente)
+            tripleAlianza(Triple Alianza)
+        preludio(Preludio)
+            asesinatoArchiduque(Asesinato del archiduque Francisco Fernando de Austria)
+            crisisJulio(Crisis de julio)
 
-estan ordenados de forma jerarquica y tabulados como 
-si fuera python.
+Nota Importante:
+Único Nodo Raíz: Solo debe haber un nodo raíz en el diagrama. Los subtemas deben estar organizados en subcategorías lógicas y conectados de manera jerárquica al nodo raíz.
+Máximo de Subtemas: No debe haber más de 10 subtemas directos del nodo raíz. Agrupa los subtemas en categorías lógicas si es necesario.
+Evitar Subtemas en la Raíz: No puede haber subtemas al mismo nivel que el nodo raíz. Todos los subtemas deben estar debidamente indentados.
+Claridad y Consistencia: La información debe presentarse de manera clara y estructurada, siguiendo un flujo lógico de pensamiento. Cada nodo debe tener un padre y, si es necesario, hijos.
+
+[Diagrama Proporcionado]
+Explicación de respuesta: Por favor, utiliza diagramas Mermaid para representar la estructura jerárquica del contenido del texto proporcionado,cuando es mindmap asegurate de que solo haya un nodo raíz y que todos los subtemas estén correctamente organizados como subnodos de dicho nodo raíz. Además, no debe haber más de 10 subtemas directos del nodo raíz.
+
+
 
 ---------------------------------
 `
@@ -178,6 +200,17 @@ const commonErrors = `
 ...ar o practicar yoga|> B    A -->|Aument
 -----------------------^
 Expecting 'SPACE', 'AMP', 'COLON', 'DOWN', 'DEFAULT', 'NUM', 'COMMA', 'NODE_STRING', 'BRKT', 'MINUS', 'MULT', 'UNICODE_TEXT', got 'TAGEND'
+---------------------------------------
+mindmap
+    Frente occidental
+        Frente oriental
+        Frente italiano
+mindmap
+Error: Error: Parse error on line 4:
+... Frente italianomindmap
+----------------------^
+Expecting 'SPACELINE', 'NL', 'EOF', 'SPACELIST', 'ICON', 'CLASS', 'NODE_DSTART', 'NODE_ID', got 'MINDMAP'
+---------------------------------------
 `
 
 const buildMermaidTemplate = (summary: string, type: string) => {
@@ -203,10 +236,9 @@ const buildMermaidTemplate = (summary: string, type: string) => {
   ${commonErrors}
   [Fin de los errores comunes]
 
-  [DIAGRAMAS PROPORCIONADO]
+  [DIAGRAMA PROPORCIONADO]
 
-  Explicación de respuesta: Por favor, utiliza diagramas Mermaid para explicar los subtemas identificados y la relación entre ellos.
-  y HASLO EXLUSIVAMENTE EN EL TIPO DE DIAGRAMA PROPORCIONADO EN [DIAGRAMAS PROPORCIONADO]
+
   ${type}
   [Fin diagrama proporcionado]
 
@@ -216,28 +248,109 @@ const buildMermaidTemplate = (summary: string, type: string) => {
   diagrama que vas a utilizar. Recuerda no incluir texto en esta sección. y solo responder con el tipo de diagrama que vas a utilizar, responde en texto plano, no en markdown,
   evita las comillas invertidas y el texto en markdown. solo responde con el tipo de diagrama que vas a utilizar y su contenido.
 
-  1. Identificar subtemas
+  NUNCA RESPONDAS CON 2 O MAS TIPOS DE DIAGRAMAS, SOLO RESPONDE CON UN TIPO DE DIAGRAMA.
+  Es muy importante que sigas las instrucciones y solo respondas con un tipo de diagrama.
+  debes seguir las instrucciones y solo responder con un tipo de diagrama. debidamente identificado.
+  esto porque el sistema solo acepta un tipo de diagrama y no puede procesar mas de uno. no uses graph USA MINDMAP
+  graph es muy aburrido y mindmap lo puede remplazar, usa minmap en su lugar. recuerda solo responder con un tipo de diagrama.
+  y usa mindmap en lugar de graph, graph es muy genérico y mindmap es mas especifico. solo responde con un tipo de diagrama.
+
+
+  1. Identificar subtemas 
   2. Analizar relación entre subtemas
   3. Siguiendo la Explicación de respuesta
   4. Identificar puntos clave, que puedan ser explicados plasmados en un diagrama Mermaid.
-  5. Crear diagrama Mermaid y HASLO EXLUSIVAMENTE EN TIPO DE DIAGRAMA PROPORCIONADO EN [DIAGRAMAS PROPORCIONADO]
+  5. Crear diagrama Mermaid y HASLO EXLUSIVAMENTE EN TIPO DE DIAGRAMA PROPORCIONADO EN [DIAGRAMAS PROPORCIONADO] y Solo responde con un tipo de diagrama. NO RESPONDAS CON 2 O MAS TIPOS DE DIAGRAMAS.
   6. No te salgas del texto proporcionado y utiliza solo la información proporcionada.
   7. Utiliza diagramas Mermaid para explicar los subtemas identificados y la relación entre ellos.
+  8. EVITA LOS [ERRORES COMUNES]
 
 
-  Muy importtante: no me brindes informacion del texto o algun contexto adicional, solo dame la respuesta sintetizada en un diagrama Mermaid.
+  Muy importante: no me brindes informacion del texto o algun contexto adicional, solo dame la respuesta sintetizada en un diagrama Mermaid.
   SOLO RESPONDE CON DIAGRAMAS MERMAID, NO TEXTO.
   NO RESPONDAS CON TEXTO, SOLO DIAGRAMAS MERMAID.
 
   [Fin de la guia general del flujo de trabajo]
   `
 }
+export const getDiagramExplanation = (type: MAP_TYPES) => {
 
+  console.log("Type:", type, type.toUpperCase()); // Verifica el valor de type
+  console.log("MAP_TYPES:", MAP_TYPES); // Verifica los valores de MAP_TYPES
+  console.log("flowchart:", flowchart); // Verifica que flowchart esté definido
+  console.log("gantt:", gantt); // Verifica que gantt esté definido
+  console.log("classDiagram:", classDiagram); // Verifica que classDiagram esté definido
+  console.log("stateDiagram:", stateDiagram); // Verifica que stateDiagram esté definido
+  console.log("sequence:", sequence); // Verifica que sequence esté definido
+  console.log("entityRelationship:", entityRelationship); // Verifica que entityRelationship esté definido
+  console.log("mindmap:", mindmap); //
+
+  return {
+    [MAP_TYPES.FLOWCHART]: flowchart,
+    [MAP_TYPES.GANTT]: gantt,
+    [MAP_TYPES.CLASS]: classDiagram,
+    [MAP_TYPES.STATE]: stateDiagram,
+    [MAP_TYPES.SEQUENCE]: sequence,
+    [MAP_TYPES.ENTITY]: entityRelationship,
+    [MAP_TYPES.MINDMAP]: mindmap
+  }[type]
+}
+
+
+const mermaidv2Template = (summary: string, type: MAP_TYPES) => {
+  return `
+  A continuación, se presenta un resumen con subtemas identificados a partir de un texto proporcionado.
+  [Resumen General]
+  ${summary}
+  [Fin del Resumen General]
+
+  [Instrucciones Generales para el Diagrama]
+  - Genera un diagrama en formato Mermaid.
+  - Asegúrate de seguir las reglas específicas para el tipo de diagrama proporcionado.
+  - Asegúrate de que el diagrama tenga solo un nodo raíz.
+
+  NUNCA RESPONDAS CON 2 O MAS TIPOS DE DIAGRAMAS, SOLO RESPONDE CON UN TIPO DE DIAGRAMA.
+  Es muy importante que sigas las instrucciones y solo respondas con un tipo de diagrama.
+  debes seguir las instrucciones y solo responder con un tipo de diagrama. debidamente identificado.
+  esto porque el sistema solo acepta un tipo de diagrama y no puede procesar mas de uno. no uses graph USA MINDMAP
+  graph es muy aburrido y mindmap lo puede remplazar, usa minmap en su lugar. recuerda solo responder con un tipo de diagrama.
+  y usa mindmap en lugar de graph, graph es muy genérico y mindmap es mas especifico. solo responde con un tipo de diagrama.
+
+  [Explicación de sintaxis geneal de mermaid]
+  ${mermaidSyntaxExplanation}
+  [Fin de la explicación]
+
+  [Tipo de Diagrama Proporcionado]
+  ${type}
+  la respuesta solo debe ser basada en este tipo de diagrama. solo responde con un tipo de diagrama. y que sea el tipo de diagrama proporcionado.
+  [Fin del Tipo de Diagrama Proporcionado]
+
+  [Explicación de diagrama proporcionado]
+  ${getDiagramExplanation(type)}
+  [Fin de la explicación de diagrama proporcionado]
+
+
+  [Explicación de Respuesta]
+  NUNCA RESPONDAS CON 2 O MAS TIPOS DE DIAGRAMAS, SOLO RESPONDE CON UN TIPO DE DIAGRAMA.
+
+  Por favor, utiliza la sintaxis de Mermaid para generar el diagrama del tipo especificado siguiendo las instrucciones proporcionadas. Asegúrate de mantener la estructura adecuada y de incluir pequeñas explicaciones solo donde sea muy necesario. Genera únicamente el tipo de diagrama especificado en [Tipo de Diagrama Proporcionado].
+
+  Muy importante: no me brindes informacion del texto o algun contexto adicional, solo dame la respuesta sintetizada en un diagrama Mermaid.
+  SOLO RESPONDE CON DIAGRAMAS MERMAID, NO TEXTO.
+  NO RESPONDAS CON TEXTO, SOLO DIAGRAMAS MERMAID.
+
+  no uses graph USA MINDMAP
+  graph es muy aburrido y mindmap lo puede remplazar, usa minmap en su lugar. recuerda solo responder con un tipo de diagrama.
+  y usa mindmap en lugar de graph, graph es muy genérico y mindmap es mas especifico. solo responde con un tipo de diagrama.
+
+  [Fin de la Explicación de Respuesta]
+  `
+}
 
 
 
 export const TEMPLATES = {
   SUMMARY: summaryTemplate,
-  MERMAID: buildMermaidTemplate,
+  MERMAID: mermaidv2Template,
   //QUESTION: questionTemplate
 }

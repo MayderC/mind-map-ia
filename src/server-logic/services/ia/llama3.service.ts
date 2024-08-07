@@ -1,7 +1,8 @@
 import { generateText, streamText } from 'ai';
 import { groq } from './ia.providers';
 import { IA_ALLOWED_MODELS } from './models';
-import { TEMPLATES } from './template-prompts';
+import {  TEMPLATES } from './template-prompts';
+import { MAP_TYPES } from '@/shared/constants';
 
 
 export const question = async(question: string)=> {
@@ -38,7 +39,7 @@ export const getSummaryStream = async(userText: string)=> {
 
 }
 
-export const getMermaidTemplate = async(summary: string, type: string)=> {
+export const getMermaidTemplate = async(summary: string, type: MAP_TYPES)=> {
   const model = groq(IA_ALLOWED_MODELS.LLAMA_31.INSTANT);
   const { text } = await generateText({
     model: model,

@@ -1,5 +1,6 @@
 'use client'
 
+import { mermaidEval } from '@/presentation-ui/helpers/handle-files/mermaid';
 import React, { useEffect } from 'react'
 
 function new_script(src: string) {
@@ -31,6 +32,7 @@ export const MermaidV2 = ({markup}: any) => {
         my_script.then(() => {
             (window as any).mermaid.mermaidAPI.initialize({
                 securityLevel: 'loose',
+                theme: 'dark',
             });
             (window as any).mermaid.contentLoaded();
             (window as any).mermaid.run({
@@ -48,33 +50,20 @@ export const MermaidV2 = ({markup}: any) => {
     }
   }, [])
 
-  function mermaidEval() {
-    let text = markup || ""
-    if (!text.match(/^[a-zA-Z]/)) {
-      text = text.split('\n').slice(1, -1).join('\n');
-    }
-    text = text.replace(/"`.*?`"/g, function(match: any) {
-      return eval(match.slice(1, -1));
-    });
-    text = text.replace(/"\{.*?\}"/g, function(match: any) {
-      return eval(match.slice(1, -1));
-    });
-    return text;
-  }
 
   const eleM = document.querySelector('.mermaid');
   async function mermaidDraw() {
     try {
-      let graphDefinition =  mermaidEval();
-      const {
+      let graphDefinition =  mermaidEval(markup);
+      const { 
         svg
       } = await (window as any).mermaid.render('graphDiv', graphDefinition);
       eleM!.innerHTML = svg;
     } catch (err) {
-
+      (window as any).mermaid?.contentLoaded();
       console.error(err);
     }
   };
   
-  return <pre className="mermaid bg-slate-500 w-full h-[100%] overflow-y-scroll">{mermaidEval()}</pre>
+  return <pre className="mermaid bg-primary-dark w-full h-[100%] flex  overflow-y-scroll">{mermaidEval(markup)}</pre>
 }

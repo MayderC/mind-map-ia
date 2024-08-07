@@ -4,6 +4,7 @@ import { MapItemListTool } from "./MapItemListTool";
 import { IMap } from "@/shared/interfaces/IMap";
 import NextLink from "next/link";
 import { useMermaidMap } from "@/presentation-ui/hooks/useMeramaidMap";
+import { MAP_TYPES } from "@/shared/constants";
 
 type MapListToolProps = {
   maps : IMap[];
@@ -17,7 +18,7 @@ type MapInfoFormProps = {
 }
 
 const MapInfoForm = ({generateMap}: MapInfoFormProps) => {
-  const [form, setForm] = useState<{title: string,type: string}>({title: '', type: 'mindmap'})
+  const [form, setForm] = useState<{title: string,type: string}>({title: '', type: MAP_TYPES.MINDMAP})
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>()
 
@@ -60,13 +61,13 @@ const MapInfoForm = ({generateMap}: MapInfoFormProps) => {
         id="type" 
         className="bg-primary-light text-zinc-950 font-semibold p-1 rounded-lg"
         required>
-          <option value="mindmap">Mindmap</option>
-          <option value="flowchart">Flowchart</option>
-          <option value="sequence">Sequence</option>
-          <option value="gantt">Gantt</option>
-          <option value="class">Class</option>
-          <option value="state">State</option>
-          <option value="entity">Entity</option>
+          <option value={MAP_TYPES.MINDMAP}>Mindmap</option>
+          <option value={MAP_TYPES.FLOWCHART}>Flowchart</option>
+          <option value={MAP_TYPES.SEQUENCE}>Sequence</option>
+          <option value={MAP_TYPES.GANTT}>Gantt</option>
+          <option value={MAP_TYPES.CLASS}>Class</option>
+          <option value={MAP_TYPES.SEQUENCE}>State</option>
+          <option value={MAP_TYPES.ENTITY}>Entity</option>
         </select>
       </div>
         {error && <span className="text-red-500"> Fill all fields</span>}

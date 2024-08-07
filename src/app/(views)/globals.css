@@ -72,3 +72,8 @@ svg[role="graphics-document document"][aria-roledescription="error"] {
   position: relative;
 }
 
+
+.section-root > * {
+  color: white !important;
+}
+
