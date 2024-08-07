@@ -1,4 +1,4 @@
-import { createOpenAI as createGroq } from '@ai-sdk/openai';
+import { createOpenAI as createGroq, openai } from '@ai-sdk/openai';
 
 const groq = createGroq({
   baseURL: process.env.GROQ_API_URL,

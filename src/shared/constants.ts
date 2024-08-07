@@ -12,7 +12,7 @@ export enum MAP_TYPES {
     GANTT = 'GANTT',
     CLASS = 'CLASS',
     STATE = 'STATE',
-    ENTITY = 'ENTITY',
+    ENTITY = 'erDiagram',
     MINDMAP = 'MINDMAP',
 }
 export type ALLOWED_MAP_TYPES = (typeof MAP_TYPES)[keyof typeof MAP_TYPES];

@@ -275,15 +275,6 @@ const buildMermaidTemplate = (summary: string, type: string) => {
 }
 export const getDiagramExplanation = (type: MAP_TYPES) => {
 
-  console.log("Type:", type, type.toUpperCase()); // Verifica el valor de type
-  console.log("MAP_TYPES:", MAP_TYPES); // Verifica los valores de MAP_TYPES
-  console.log("flowchart:", flowchart); // Verifica que flowchart esté definido
-  console.log("gantt:", gantt); // Verifica que gantt esté definido
-  console.log("classDiagram:", classDiagram); // Verifica que classDiagram esté definido
-  console.log("stateDiagram:", stateDiagram); // Verifica que stateDiagram esté definido
-  console.log("sequence:", sequence); // Verifica que sequence esté definido
-  console.log("entityRelationship:", entityRelationship); // Verifica que entityRelationship esté definido
-  console.log("mindmap:", mindmap); //
 
   return {
     [MAP_TYPES.FLOWCHART]: flowchart,
@@ -316,9 +307,6 @@ const mermaidv2Template = (summary: string, type: MAP_TYPES) => {
   graph es muy aburrido y mindmap lo puede remplazar, usa minmap en su lugar. recuerda solo responder con un tipo de diagrama.
   y usa mindmap en lugar de graph, graph es muy genérico y mindmap es mas especifico. solo responde con un tipo de diagrama.
 
-  [Explicación de sintaxis geneal de mermaid]
-  ${mermaidSyntaxExplanation}
-  [Fin de la explicación]
 
   [Tipo de Diagrama Proporcionado]
   ${type}

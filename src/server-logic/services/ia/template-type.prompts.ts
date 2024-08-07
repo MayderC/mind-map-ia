@@ -52,16 +52,39 @@ export const classDiagram = `
 - Utiliza la sintaxis de Mermaid para class diagrams.
 - Asegúrate de representar las clases y sus relaciones.
 - Usa atributos y métodos dentro de las clases.
+- Remplaza los nombres de los atributos y métodos por caracteres funcionnes segun el resumen
+o el texto proporcionado. (name y age son solo ejemplos) agrega las necesarias segun el texto y el nombre de su clase
+maximo 5 atributos y 5 metodos por clase.
 
 Ejemplo de sintaxis de Mermaid para class:
 classDiagram
   class Animal {
-    +String name
+    +String name 
     +int age
     +void makeSound()
   }
-
 [Fin de las Instrucciones Específicas para Class]
+
+[Relaciones de Clase]
+<|--	Inheritance
+*--	Composition
+o--	Aggregation
+-->	Association
+--	Link (Solid)
+..>	Dependency
+..|>	Realization
+..	Link (Dashed)
+
+classA --|> classB : Inheritance
+classC --* classD : Composition
+classE --o classF : Aggregation
+classG --> classH : Association
+classI -- classJ : Link(Solid)
+classK ..> classL : Dependency
+classM ..|> classN : Realization
+classO .. classP : Link(Dashed)
+
+[Fin de las Relaciones de Clase]
 
 `
 
@@ -85,15 +108,53 @@ stateDiagram-v2
 
 export const entityRelationship = `
 [Instrucciones Específicas para Entity]
-- Utiliza la sintaxis de Mermaid para entity relationship diagrams.
-- Asegúrate de representar las entidades y sus relaciones.
-- Usa diferentes tipos de relaciones (uno a muchos, muchos a muchos).
 
-Ejemplo de sintaxis de Mermaid para entity:
+Claro, aquí tienes un prompt detallado y corregido para generar un diagrama ER usando Mermaid.js, que incluye instrucciones sobre cómo evitar errores:
+
+Genera un diagrama de entidad-relación (ER) usando Mermaid.js. Sigue las instrucciones a continuación para evitar errores comunes y asegurar que el diagrama sea válido:
+
+Instrucciones para Evitar Errores
+Nombres de Entidades y Relaciones:
+
+Usa nombres de entidades y relaciones sin espacios, tildes, ni caracteres especiales. Solo utiliza caracteres alfanuméricos y guiones bajos.
+Ejemplo de nombres válidos: Empleado, Departamento, Proyecto, Tarea.
+Formato de Relaciones:
+
+Asegúrate de que las relaciones entre entidades estén claramente definidas usando la notación correcta.
+Las relaciones uno a muchos se indican con ||--o{.
+Las relaciones muchos a uno se indican con o{--||.
+Las relaciones muchos a muchos se indican con o{--o{.
+Estructura del Diagrama:
+
+El diagrama debe comenzar con erDiagram seguido de las definiciones de entidades y sus relaciones.
+Cada relación debe estar claramente etiquetada para describir la relación entre las entidades.
+Ejemplo Correcto
+Aquí tienes un ejemplo de un diagrama ER siguiendo las instrucciones anteriores:
+
+[Eejemplo]
+
 erDiagram
-  CUSTOMER ||--o{ ORDER : places
-  ORDER ||--|{ LINE-ITEM : contains
-  CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+    Empleado_A ||--o{ posee_departamento : trabaja_en
+    Departamento_Emp ||--o{ tiene_Proyecto : gestiona
+    Empleado_name ||--o{ Tarea_de : asigna
+    Tarea_example ||--o{ nombre_Proyecto : pertenece_a
+
+[Ejemplo]
+
+Descripción del Ejemplo
+Empleado trabaja en un Departamento. La relación es uno a muchos (||--o{).
+Departamento gestiona uno o más Proyectos. La relación es uno a muchos (||--o{).
+Empleado puede asignar múltiples Tareas. La relación es uno a muchos (||--o{).
+Tarea pertenece a un Proyecto. La relación es uno a muchos (||--o{).
+
+NO SE USAN ESPACIOS EN LOS NOMBRES EN NINGUN NOMBRE O LUGAR
+NO SE USAN TILDES NI CARACTERES ESPECIALES EN NINGUN NOMBRE O LUGAR
+
+Consejos Adicionales
+Verifica la Sintaxis: Asegúrate de que cada línea de relación esté correctamente formateada y que no haya errores de sintaxis.
+Evita Espacios y Caracteres Especiales: Usa solo caracteres alfanuméricos y guiones bajos para evitar problemas de interpretación.
+
+
 
 [Fin de las Instrucciones Específicas para Entity]
 `
@@ -143,7 +204,7 @@ El nodo raiz debe tener solo una tabulación o espacio al inicio de la línea, l
 
 a todo esto para evitar errores de parseo. agrega siempre un espacio extra antes de cada subtema para mantener la jerarquía clara y lógica.
 
-es decir al nodo solo le das un espacio y a los subtemas dos espacios. o haces una tabulación y dos tabulaciones respectivamente.
+es decir al nodo raiz solo le das un espacio y a los subtemas dos espacios. o haces una tabulación y dos tabulaciones respectivamente.
 pero siempre un espacio extra antes de cada subtema para evitar errores de parseo.
 
 el nodo raiz es el primer nodo que se coloca en el diagrama y debe tener solo un espacio al inicio de la línea. los subtemas deben tener dos espacios al inicio de la línea para indicar su jerarquía. pero siempre un espacio extra antes de cada subtema para evitar errores de parseo.

@@ -31,5 +31,21 @@ function verifyAndCorrectMindmap(text: string): string {
       correctedLines.push(line);
   });
 
-  return correctedLines.join('\n');
+  return replaceSpacesAndRemoveAccents(correctedLines.join('\n'))
 }
+
+function replaceSpacesAndRemoveAccents(input: string): string {
+  if(!input.includes('erDiagram'))return input;
+  const removeAccents = (str: string): string => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  const removeWhiteSpaces = (str: string): string => {
+    return str.replace(/(?<=\w) (?=\w)/g, '_');
+  }
+
+  let output = removeAccents(input);
+ 
+  return removeWhiteSpaces(output);
+}
+
+
