@@ -6,21 +6,21 @@ import { ToolIA } from "@/presentation-ui/components/toolIA/ToolIA";
 import { useUser } from "@/presentation-ui/hooks/useUser";
 import { useMermaidMap } from "@/presentation-ui/hooks/useMeramaidMap";
 import { useTool } from "@/presentation-ui/hooks/useTool";
-import { CreateMap } from "@/presentation-ui/interfaces";
-import { createMapFromSummary } from "@/presentation-ui/services/maps.service";
+import { CreateMap, MerMaidMapContextType } from "@/presentation-ui/interfaces";
+import { createMapFromSummary, removeMapFromSummary } from "@/presentation-ui/services/maps.service";
 import { getSummaries, getSummaryById } from "@/presentation-ui/services/summary.service";
 import { IMap } from "@/shared/interfaces/IMap";
 import { ISummary } from "@/shared/interfaces/ISummary";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
+import { GenericModal } from "@/presentation-ui/components/modals/GenericModal";
 // import Mermaid from "react-mermaid2"
 
 
 const ExcalidrawWrapper = dynamic(
   async () => (await import("@/presentation-ui/components/ExcalidrawWraper/Excalidrawrapper")).default,
   {
-
     ssr: false,
     loading: () => <p>Loading...</p>,
   },
@@ -79,7 +79,6 @@ function Tool(){
   }
 
   const generateMap = async(data: CreateMap) => {
-    // generate for current summary
     data.content = currentSummary?.content || ""
     const id = currentSummary?._id || ""
     const response = await createMapFromSummary(id, data)
@@ -95,6 +94,30 @@ function Tool(){
 
   const tool = useTool()
 
+  const [showModal, setShowModal] = useState(false)
+  const handleDelete = async(map: MerMaidMapContextType) => {
+    //delete map
+    if (!merCtx?.map?._id) return
+    setShowModal(false)
+    const summaryId = currentSummary?._id || ""
+    const mapId = merCtx.map._id
+    const response = await removeMapFromSummary(summaryId, mapId)
+    if (response.ok) {
+      merCtx.map = null
+      setChart('')
+      setCurrentSummary((prevSummary) => {
+        if (!prevSummary) return null
+        const maps = prevSummary.maps?.filter((map) => map._id !== mapId) || []
+        return { ...prevSummary, maps };
+      })
+    }
+  }
+
+  const onDelete = (map: IMap) => {
+    if (!merCtx)return
+    setShowModal(true)
+    merCtx.setMap(map)
+  }
 
   return (
       <main className="min-[calc(100vh-64px)] h-[calc(100vh-70px)] w-full relative">
@@ -108,6 +131,7 @@ function Tool(){
                   loading={loadingSummaries} 
                   setSelctMap={selectMap} 
                   maps={currentSummary?.maps || []}
+                  onDelete={onDelete}
                 />
               : <SummaryListTool  
                   summaries={summaries} 
@@ -117,6 +141,7 @@ function Tool(){
             </ToolIA>
           }
         </>
+        <GenericModal callback={handleDelete} data={{name: merCtx?.map?.title || '', type: " map "}} show={showModal} handleShow={setShowModal} />
       </main>
   );
 }

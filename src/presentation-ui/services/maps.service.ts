@@ -13,3 +13,12 @@ export const createMapFromSummary = async(summaryId: string, data: CreateMap): P
   }
 
 }
+
+export const removeMapFromSummary = async(summaryId: string, mapId: string): Promise<HttpResponse<IMap | null>> => {
+  try {
+    const response = await http.delete("/summaries/" + summaryId + "/maps/" + mapId);
+    return {data: response.data.map, ok: true};
+  } catch (e) {
+    return {data: null, ok: false};
+  }
+}

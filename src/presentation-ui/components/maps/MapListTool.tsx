@@ -10,7 +10,8 @@ type MapListToolProps = {
   maps : IMap[];
   setSelctMap: Function;
   loading: boolean;
-  generateMap: Function
+  generateMap: Function,
+  onDelete: Function
 }
 
 type MapInfoFormProps = {
@@ -84,7 +85,7 @@ const MapInfoForm = ({generateMap}: MapInfoFormProps) => {
 
 
 
-export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListToolProps ) => {
+export const MapListTool = ({maps, setSelctMap, loading, generateMap, onDelete}: MapListToolProps ) => {
   const [showForm, setShowForm] = useState<boolean>(true)
   const [textBtn, setTextBtn] = useState<string>('Create Map')
   const mermaid =useMermaidMap()
@@ -93,6 +94,7 @@ export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListTo
     if(showForm)setTextBtn('Close Form')
     else setTextBtn('Create Map')
   }, [showForm])
+
 
 
   return (
@@ -106,16 +108,16 @@ export const MapListTool = ({maps, setSelctMap, loading, generateMap}: MapListTo
             Select a map
           </p>
         </div>
-        <div className=" overflow-y-scroll no-scrollbar flex flex-col gap-4">
+        <div className=" overflow-y-scroll h-full no-scrollbar flex flex-col gap-4">
           { showForm && <MapInfoForm generateMap={generateMap}/>}
-          <div className="flex flex-col gap-4 overflow-y-scroll no-scrollbar">
+          <div className="flex flex-col gap-4 overflow-y-scroll h-full no-scrollbar">
           {!loading
             ? <>
                 {maps.length > 0 
                   ? <>
                       {maps.map((map) => (
-                        <div key={map._id} onClick={()=> setSelctMap(map)}>
-                          <MapItemListTool  data={map} />
+                        <div key={map._id} onClick={()=> setSelctMap(map)} >
+                          <MapItemListTool onDelete={onDelete}  data={map} />
                         </div>
                       ))}
                     </>

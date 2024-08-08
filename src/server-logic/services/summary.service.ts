@@ -48,3 +48,13 @@ export const deleteSummaryFromUser = async (userId: string, summaryId: string) =
         throw new Error('Error deleting summary from user');
     }
 }
+
+export const removeMapFromSummary = async (summaryId: string, mapId: string) => {
+    try {
+        const summary = await Summary.findById(summaryId)
+        summary.maps = summary.maps.filter((map: string) => map !== mapId);
+        return await summary.save();
+    }catch (e) {
+        throw new Error('Error removing map from summary');
+    }
+}
