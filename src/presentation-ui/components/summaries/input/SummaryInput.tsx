@@ -13,6 +13,7 @@ export const SummaryInput = ({setSummaryParent}: SummaryInputProps) => {
   
   const ctx = useUser()
   const [summary, setSummary] = useState<ISummary>()
+  const [loading, setLoading] = useState<boolean>(false)
 
 
   const handleSummarize = async(e: React.FormEvent<HTMLFormElement>) => {
@@ -20,8 +21,11 @@ export const SummaryInput = ({setSummaryParent}: SummaryInputProps) => {
     if(!summary) return
     if(!ctx?.user) return 
     const id = ctx?.user?.user?._id
+    setLoading(true)
     const response = await addSummary(id, summary) 
-    if(response.ok)setSummaryParent(response.data)
+    if(!response.ok) return
+    setLoading(false)
+    setSummaryParent(response.data)
   }
 
   // const handleAttachFile = (e) => {}
@@ -74,7 +78,7 @@ export const SummaryInput = ({setSummaryParent}: SummaryInputProps) => {
             </div>
             <div className="flex items-center gap-2 p-3 relative bottom-14">
                 <button type="submit" className="inline-flex items-center py-2 px-4 text-sm text-center text-primary-dark font-bold bg-white rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-primary-light">
-                    Summarize
+                    {loading ? 'Loading...' : 'Summarize'}
                 </button>
                 {/* <div className="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
                     <label htmlFor="button-file" className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
