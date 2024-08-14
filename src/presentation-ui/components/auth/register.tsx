@@ -1,13 +1,12 @@
 "use client";
 
-import { createAuthCookie } from "@/server-logic/services/auth.action";
 import { RegisterSchema } from "@/presentation-ui/helpers/schemas";
 import { RegisterFormType } from "@/presentation-ui/helpers/types";
 import { Button, Input } from "@nextui-org/react";
 import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { register } from "@/presentation-ui/services/auth.service";
 import { useUser } from "@/presentation-ui/hooks/useUser";
 
@@ -22,6 +21,7 @@ export const Register = () => {
     confirmPassword: "admin",
   };
   const {login: loginContext} = useUser();
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleRegister = useCallback(
     async (values: RegisterFormType) => {
@@ -29,17 +29,17 @@ export const Register = () => {
       const response = await register(values.email, values.password, values.name);
       if(response.ok){
         loginContext(response.data);
-        try {
-            //await router.push('/dashboard');
-            window.location.href = '/dashboard';
+        try {window.location.href = '/dashboard';} 
+        catch { console.clear();}
+      }else showErrorMessage('Invalid credentials');
+    }, [router]);
 
-        } catch (error) {
-            console.error('Error during redirection:', error);
-        }
-      }
-    },
-    [router]
-  );
+  const showErrorMessage = (error: string) => {
+    setErrorMessage(error)
+     setTimeout(() => {
+       setErrorMessage('');
+     }, 3000);
+  }
 
   return (
     <>
@@ -91,6 +91,10 @@ export const Register = () => {
               />
             </div>
 
+            <p className='text-red-500 text-sm h-6'>
+               {errorMessage && errorMessage}
+            </p>
+
             <Button
               onPress={() => handleSubmit()}
               variant='flat'
@@ -103,7 +107,7 @@ export const Register = () => {
 
       <div className='font-light text-slate-400 mt-4 text-sm'>
         Already have an account ?{" "}
-        <Link href='/login' className='font-bold'>
+        <Link href='/auth/login' className='font-bold'>
           Login here
         </Link>
       </div>

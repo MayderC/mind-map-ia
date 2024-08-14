@@ -8,33 +8,32 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { login } from "@/presentation-ui/services/auth.service";
 import { useUser } from "@/presentation-ui/hooks/useUser";
+import { useState } from "react";
 
 export const Login = () => {
-  const router = useRouter();
   const {login: loginContext} = useUser();
+  const [errorMessage, setErrorMessage] = useState<string>('')
+
   const initialValues: LoginFormType = {
     email: "test1@mgail.com",
     password: "password",
   };
 
   const handleLogin = async (values: LoginFormType) => {
-      // `values` contains email & password. You can use provider to connect user
       const response = await login(values.email, values.password);
-      console.log(response);
       if(response.ok){
-        console.log('Login successful');
         loginContext(response.data);
-        try {
-            //await router.push('/dashboard');
-            window.location.href = '/dashboard';
-            //router.push('/dashboard');
-            console.log('Redirection successful');
-        } catch (error) {
-            console.error('Error during redirection:', error);
-        }
-      }
+        try { window.location.href = '/dashboard'} 
+        catch {console.clear();}
+      }else showErrorMessage('Invalid credentials')
   }
 
+  const showErrorMessage = (message: string) => {
+    setErrorMessage(message)
+    setTimeout(() => {
+      setErrorMessage('')
+    }, 3000)
+  }
 
   return (
     <>
@@ -66,6 +65,10 @@ export const Login = () => {
                 onChange={handleChange("password")}
               />
             </div>
+
+            <p className='text-red-500 text-sm h-6'>
+               {errorMessage && errorMessage}
+            </p>
 
             <Button
               onPress={() => handleSubmit()}
