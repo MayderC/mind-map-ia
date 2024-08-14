@@ -10,13 +10,10 @@ export const POST = async(req : Request, context : any) => {
 
     //answers string
     console.log("TEST")
-    const response = await getSummaryStream(questions);
+    //const response = await getSummaryStream(questions);
 
-    return NextResponse.json({response: response.text}, {
-        headers: {
-            "Content-Type": "text/plain",
-            "Content-Disposition": `attachment; filename="summary.txt"`
-        }
-    });
+    const response = {text: "test"}
+
+    return NextResponse.json({response: response.text});
 
 }
