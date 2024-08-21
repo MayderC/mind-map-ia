@@ -98,41 +98,19 @@ const mermaidv2Template = (summary: string, type: MAP_TYPES) => {
   `
 }
 
-const excalidrawPromp = (text: string) => {
+const getDiagramType = (text: string) => {
   return`
     Explicación:
-    shapeSchema: Es el esquema principal que describe un elemento de la lista. Tiene propiedades opcionales y requeridas, dependiendo del tipo de elemento.
-    roundnessSchema: Define el objeto roundness.
-    boundElementSchema: Define los elementos vinculados, que pueden ser de tipo arrow, text, o line.
-    pointSchema: Es una tupla que define un punto en el espacio (x, y).
-    bindingSchema: Define el objeto startBinding y endBinding, que contienen información de conexión entre elementos.
-
-    "Por favor, genera un array de objetos que representen formas de Excalidraw. El array debe incluir varias formas como rectángulos, elipses, diamantes y texto. Además, incluye flechas y líneas que conecten estas formas. Asegúrate de que las posiciones de las formas y las direcciones de las flechas/líneas tengan sentido lógico, con flechas apuntando de una forma a otra o conectando formas relacionadas. Los objetos deben incluir las propiedades necesarias como x, y, width, height, angle, points, strokeColor, backgroundColor, fillStyle, y otras relevantes para cada forma. Asegúrate de que las flechas y las líneas conecten correctamente las formas por sus puntos lógicos."
-
-    Creame el diagrama segun el texto proporcionado., puede ser un diagrama de flujo, un diagrama de clases, un diagrama de secuencia, un diagrama de estados, un diagrama de entidad-relacion, un diagrama de gantt o un mapa mental.
-    sobre [Texto proporcionado] tranformalo en un diagrama de flujo, un diagrama de clases, un diagrama de secuencia, un diagrama de estados, un diagrama de entidad-relacion, un diagrama de gantt o un mapa mental.
-
-    generema un maximo de 3 elementos, no mas de 3 elementos.
-
+    Solo respondeme con una palabra y esa palabra sera el que determines que tiene mas sentido con el contexto del texto proporcionado.
     [Texto proporcionado]
     ${text}
     [Fin del texto proporcionado]
-
-  [ElementType]
-  "selection",
-  "rectangle",
-  "diamond",
-  "ellipse",
-  "arrow",
-  "bar",
-  "circle",
-  "triangle",
-  "diamond",
-  [Fin del ElementType]`
+   ['FLOWCHART', 'SEQUENCE', 'CLASS', 'STATE', 'ENTITY', 'MINDMAP']
+`
 }
 
 export const TEMPLATES = {
   SUMMARY: summaryTemplate,
   MERMAID: mermaidv2Template,
-  EXCLIDRAW: excalidrawPromp
+  EXCLIDRAW_TYPE: getDiagramType
 }

@@ -23,6 +23,9 @@ export interface MerMaidMapContextType {
   map: IMap | null;
   setMap: (map: IMap) => void;
   removeMap: () => void;
+  handleMermaid4Excalidraw: (mermaid: string) => void,
+  resetMermaid4Excalidraw: () => void,
+  mermaid4Excalidraw: string
 }
 
 export interface CreateMap extends IMap {
