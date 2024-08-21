@@ -22,3 +22,13 @@ export const removeMapFromSummary = async(summaryId: string, mapId: string): Pro
     return {data: null, ok: false};
   }
 }
+
+
+export const createExcalidrawMap = async (context: string): Promise<HttpResponse<any>> => {
+  try {
+    const response = await http.post("/maps/", {context});
+    return {data: response.data.text, ok: true};
+  } catch (e) {
+    return {data: null, ok: false};
+  }
+}
