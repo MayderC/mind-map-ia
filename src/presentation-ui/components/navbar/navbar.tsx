@@ -65,7 +65,7 @@ export const NavbarWrapper = ({ children }: Props) => {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Pidele a la IA que te genere un diagrama en Excalidraw, perdoname Midudev no te enojes no lo termine"
+            placeholder="Pidele a la IA que te genere un diagrama en Excalidraw"
             className="w-full text-white">
           </Input>
 
