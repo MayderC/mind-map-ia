@@ -30,6 +30,7 @@ export const getSummaryStream = async(userText: string)=> {
   const result = await streamText({
     model: model,
     prompt: TEMPLATES.SUMMARY(userText),
+    temperature: 0,
   });
 
   
@@ -44,6 +45,7 @@ export const getMermaidTemplate = async(summary: string, type: MAP_TYPES)=> {
   const { text } = await generateText({
     model: model,
     prompt: TEMPLATES.MERMAID(summary, type),
+    temperature: 0.5
   });
   return text
 }

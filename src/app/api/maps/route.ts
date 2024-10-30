@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextResponse} from "next/server"
 import { openai } from '@ai-sdk/openai';
 import { generateObject, generateText } from 'ai';
 import { shemeDiagramType } from "@/server-logic/services/ia/scheme-models";
@@ -13,13 +13,15 @@ export async function POST(req: Request) {
       model: openai('gpt-4o-mini'),
       schema: shemeDiagramType,
       prompt: TEMPLATES.EXCLIDRAW_TYPE(context),
+      temperature: 0,
     });
 
     const { text } = await generateText({
       model: openai('gpt-4o-mini'),
-      prompt: TEMPLATES.MERMAID(context, object.type as MAP_TYPES),
+       
+      prompt: TEMPLATES.MERMAID_NO_CONTEXT(context, object.type as MAP_TYPES),
+      temperature: 1
     });
-
 
     return NextResponse.json({text: text})
   }catch (e) {

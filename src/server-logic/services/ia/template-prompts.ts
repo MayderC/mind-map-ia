@@ -109,8 +109,61 @@ const getDiagramType = (text: string) => {
 `
 }
 
+
+
+const mermaidNoContext = (question: string, type: MAP_TYPES) => {
+  return `
+  Genera un diagrama explicativo y detallado sobre la siguiente pregunta, toda la informacion que tengas para brindar, 
+  generala en formato de diagrama mermaid.
+  [pregunta]
+  ${question}
+  [pregunta]
+
+  [Instrucciones Generales para el Diagrama]
+  - Genera un diagrama en formato Mermaid.
+  - Asegúrate de seguir las reglas específicas para el tipo de diagrama proporcionado.
+  - Asegúrate de que el diagrama tenga solo un nodo raíz.
+
+  NUNCA RESPONDAS CON 2 O MAS TIPOS DE DIAGRAMAS, SOLO RESPONDE CON UN TIPO DE DIAGRAMA.
+  Es muy importante que sigas las instrucciones y solo respondas con un tipo de diagrama.
+  debes seguir las instrucciones y solo responder con un tipo de diagrama. debidamente identificado.
+  esto porque el sistema solo acepta un tipo de diagrama y no puede procesar mas de uno. no uses graph USA MINDMAP
+  graph es muy aburrido y mindmap lo puede remplazar, usa minmap en su lugar. recuerda solo responder con un tipo de diagrama.
+  y usa mindmap en lugar de graph, graph es muy genérico y mindmap es mas especifico. solo responde con un tipo de diagrama.
+
+
+  [Tipo de Diagrama Proporcionado]
+  ${type}
+  la respuesta solo debe ser basada en este tipo de diagrama. solo responde con un tipo de diagrama. y que sea el tipo de diagrama proporcionado.
+  [Fin del Tipo de Diagrama Proporcionado]
+
+  [Explicación de diagrama proporcionado]
+  ${getDiagramExplanation(type)}
+  [Fin de la explicación de diagrama proporcionado]
+
+
+  [Explicación de Respuesta]
+  NUNCA RESPONDAS CON 2 O MAS TIPOS DE DIAGRAMAS, SOLO RESPONDE CON UN TIPO DE DIAGRAMA.
+
+  Por favor, utiliza la sintaxis de Mermaid para generar el diagrama del tipo especificado siguiendo las instrucciones proporcionadas. Asegúrate de mantener la estructura adecuada y de incluir pequeñas explicaciones solo donde sea muy necesario. Genera únicamente el tipo de diagrama especificado en [Tipo de Diagrama Proporcionado].
+
+  Muy importante: no me brindes informacion del texto o algun contexto adicional, solo dame la respuesta sintetizada en un diagrama Mermaid.
+  SOLO RESPONDE CON DIAGRAMAS MERMAID, NO TEXTO.
+  NO RESPONDAS CON TEXTO, SOLO DIAGRAMAS MERMAID.
+
+  no uses graph USA MINDMAP
+  graph es muy aburrido y mindmap lo puede remplazar, usa minmap en su lugar. recuerda solo responder con un tipo de diagrama.
+  y usa mindmap en lugar de graph, graph es muy genérico y mindmap es mas especifico. solo responde con un tipo de diagrama.
+
+  Si es mindmap, puedes generar textos cortos y explicativos para diversos subtemas. no uses quiones bajos.
+
+  [Fin de la Explicación de Respuesta]
+  `
+}
+
 export const TEMPLATES = {
   SUMMARY: summaryTemplate,
   MERMAID: mermaidv2Template,
+  MERMAID_NO_CONTEXT: mermaidNoContext,
   EXCLIDRAW_TYPE: getDiagramType
 }
